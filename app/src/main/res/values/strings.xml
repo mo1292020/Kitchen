@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_settings2">SettingsActivity2</string>
+    <string name="add_kitchen_icon">AddKitchenIcon</string>
+    <string name="add_food_icon">AddFoodIcon</string>
+    <string name="kitchen_name"> Kitchen name</string>
+    <string name="password">Password</string>
+    <string name="add_kitchen_add">Add</string>
+    <string name="add_kitchen_cancel">Cancel</string>
+    <string name="hint_add_kitchen_name">Kitchen name</string>
+    <string name="hint_add_kitchen_password"> Password </string>
+    <string name="description_image_add_kitchen">image add kitchen</string>
+    <string name="description_image_edit_kitchen">Image edit kitchen</string>
+    <string name="hint_edit_kitchen_name">Kitchen name</string>
+    <string name="hint_edit_kitchen_password">Password</string>
+    <string name="edit_kitchen_edit">Edit</string>
+    <string name="edit_kitchen_cancel">Cancel</string>
+    <string name="hint_add_food_name">Food name</string>
+    <string name="hint_add_kitchen_price">Price</string>
+    <string name="add_food_add">Add</string>
+    <string name="add_food_cancel">Cancel</string>
+    <string name="hint_edit_food_name">Food name</string>
+    <string name="description_image_edit_food">Image edit food</string>
+    <string name="hint_edit_food_price">Price</string>
+    <string name="edit_food_edit_button_text">Edit</string>
+    <string name="edit_food_cancel_button_text">Cancel</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_view_shape"
+        android:padding="20dp"
+        >
+
+    <ImageView
+        android:id="@+id/Fid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/kitchen" />
+
+    <TextView
+        android:id="@+id/Fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Android 6.0"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/Fprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Fname"
+        android:layout_marginTop="5dp"
+        android:text="Android 6.0"
+        android:layout_alignParentRight="true"
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>

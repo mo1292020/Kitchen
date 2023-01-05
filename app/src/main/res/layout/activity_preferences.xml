@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--RelativeLayout of SettingFragment  -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_catalog_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <!--SettingAppbar to set SettingToolbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/SettingAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+    <!--SettingToolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/SettingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--FrameLayout to replace with  Preferences.xml-->
+    <FrameLayout
+        android:id="@+id/FregmentContainerSetting"
+        android:layout_below="@+id/SettingAppbar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+
+
+</RelativeLayout>

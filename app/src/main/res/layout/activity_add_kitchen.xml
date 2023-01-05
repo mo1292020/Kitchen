@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--RelativeLayout of AddKitchen activity -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.myapplication.AddKitchen"
+    >
+
+    <!--AddKitchenAppbar to set AddKitchenToolbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AddKitchenAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+        <!--AddKitchenToolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/AddKitchenToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--AddKitchenImageView KitchenImage-->
+    <ImageView
+        android:id="@+id/AddKitchenImageView"
+        android:src="@drawable/kitchen"
+        android:contentDescription="@string/description_image_add_kitchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@id/AddKitchenAppbar"
+        android:layout_centerHorizontal="true"
+    />
+
+    <!--AddKitchenEditText to insert kitchen name-->
+    <EditText
+        android:id="@+id/AddKitchenEditName"
+        android:inputType="text"
+        android:hint="@string/hint_add_kitchen_name"
+        android:textColorHint="@color/gray"
+        android:autofillHints="@strings/hint_add_kitchen_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/AddKitchenImageView"
+        android:padding="20dp"
+        android:ems="12"
+    />
+
+    <!--AddKitchenEditPassword to insert kitchen password-->
+    <EditText
+        android:id="@+id/AddKitchenEditPassword"
+        android:inputType="textPassword"
+        android:hint="@string/hint_add_kitchen_password"
+        android:autofillHints="Password"
+        android:textColorHint="@color/gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/AddKitchenEditName"
+        android:padding="20dp"
+        android:ems="12"
+    />
+
+    <!--LinearLayout of add and cancel buttons-->
+    <LinearLayout
+    android:layout_below="@+id/AddKitchenEditPassword"
+    android:layout_centerHorizontal="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+        <!--AddKitchenAddButton to add kitchen to database-->
+        <Button
+            android:id="@+id/AddKitchenButton"
+            android:text="@string/add_kitchen_add"
+            android:onClick="AddKitchenListenerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            style="?android:attr/buttonBarButtonStyle"
+        />
+
+        <!--AddKitchenCancelButton to cancel addKitchen at database-->
+        <Button
+            android:id="@+id/CancelAddKitchenButton"
+            android:text="@string/add_kitchen_cancel"
+            android:onClick="CancelAddKitchenListenerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            style="?android:attr/buttonBarButtonStyle"
+        />
+
+    </LinearLayout>
+
+</RelativeLayout>

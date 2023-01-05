@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--RelativeLayout of Food activity -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.myapplication.Food"
+>
+
+    <!--FoodAppbar to set FoodToolbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/FoodAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+    <!--FoodToolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/FoodToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <!--FoodListView to show all food-->
+    <ListView
+        android:id="@+id/FoodListView"
+        android:layout_below="@+id/FoodAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:divider="@color/white"
+    />
+
+    <!--AddFoodButtonIcon to start AddFoodActivity to add new food -->
+    <ImageView
+        android:id="@+id/InsertFoodImageView"
+        android:onClick="AddFoodListenerIcon"
+        android:src="@drawable/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/add_food_icon"
+    />
+
+</RelativeLayout>

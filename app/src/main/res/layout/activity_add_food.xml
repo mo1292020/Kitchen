@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--RelativeLayout of AddFood activity -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.myapplication.AddFood"
+>
+
+        <!--AddFoodAppbar to set AddFoodToolbar-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/AddFoodAppbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        >
+
+        <!--AddFoodToolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/AddFoodToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <!--AddFoodImageView FoodImage-->
+    <ImageView
+        android:id="@+id/AddFoodImageView"
+        android:src="@drawable/kitchen"
+        android:contentDescription="@string/description_image_add_kitchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@id/AddFoodAppbar"
+        android:layout_centerHorizontal="true"
+    />
+
+    <!--AddFoodEditText to insert food name-->
+    <EditText
+        android:id="@+id/AddFoodEditName"
+        android:inputType="text"
+        android:hint="@string/hint_add_food_name"
+        android:textColorHint="@color/gray"
+        android:autofillHints="@strings/hint_add_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/AddFoodImageView"
+        android:padding="20dp"
+        android:ems="12"
+    />
+
+<!--AddFoodEditPrice to insert kitchen price-->
+
+    <EditText
+        android:id="@+id/AddFoodEditPrice"
+        android:inputType="number"
+        android:hint="@string/hint_add_kitchen_price"
+        android:autofillHints="Price"
+        android:textColorHint="@color/gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/AddFoodEditName"
+        android:padding="20dp"
+        android:ems="12"
+    />
+
+    <!--LinearLayout of add and cancel buttons-->
+    <LinearLayout
+    android:layout_below="@+id/AddFoodEditPrice"
+    android:layout_centerHorizontal="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+        <!--AddFoodAddButton to add food to database-->
+        <Button
+            android:id="@+id/AddFoodButton"
+            android:text="@string/add_food_add"
+            android:onClick="AddFoodListenerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            style="?android:attr/buttonBarButtonStyle"
+        />
+
+        <!--AddFoodCancelButton to cancel addFood at database-->
+        <Button
+            android:id="@+id/AddFoodCancelButton"
+            android:text="@string/add_food_cancel"
+            android:onClick="CancelAddFoodListenerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            style="?android:attr/buttonBarButtonStyle"
+        />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
