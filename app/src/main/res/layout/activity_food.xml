@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.myapplication.Food"
->
+    android:background="@drawable/background"
+    >
 
     <!--FoodAppbar to set FoodToolbar-->
     <com.google.android.material.appbar.AppBarLayout
@@ -46,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:contentDescription="@string/add_food_icon"
+        tools:ignore="ContentDescription"
     />
 
 </RelativeLayout>

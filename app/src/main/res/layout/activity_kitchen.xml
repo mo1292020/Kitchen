@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.myapplication.Kitchen"
+    android:background="@drawable/background"
 >
 
     <!--KitchenAppbar to set KitchenToolbar-->
@@ -26,6 +27,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
     <!--KitchenListView to show all kitchen-->
     <ListView
         android:id="@+id/KitchenListView"
@@ -41,11 +44,11 @@
         android:id="@+id/InsertKitchenImageView"
         android:onClick="AddKitchenListenerIcon"
         android:src="@drawable/add"
-        android:contentDescription="@string/add_kitchen_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        tools:ignore="ContentDescription"
     />
 
 </RelativeLayout>

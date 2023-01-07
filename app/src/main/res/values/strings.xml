@@ -40,4 +40,6 @@
     <string name="hint_edit_food_price">Price</string>
     <string name="edit_food_edit_button_text">Edit</string>
     <string name="edit_food_cancel_button_text">Cancel</string>
+    <string name="new_image_text">New Image</string>
+    <string name="edit_image_text">add image</string>
 </resources>

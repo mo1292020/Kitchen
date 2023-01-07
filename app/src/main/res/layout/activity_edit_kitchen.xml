@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.EditKitchen"
->
+    android:background="@drawable/background"
+    >
 
     <!--EditKitchenAppbar to set EditKitchenToolbar-->
     <com.google.android.material.appbar.AppBarLayout
@@ -31,12 +32,12 @@
     <ImageView
         android:id="@+id/EditKitchenImageView"
         android:src="@drawable/kitchen"
-        android:contentDescription="@string/description_image_edit_kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:layout_below="@id/EditKitchenAppbar"
         android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription"
     />
 
     <!--EditKitchenEditText to edit kitchen name-->
@@ -70,9 +71,43 @@
     />
 
 
+    <!--LinearLayout of edit Kitchen Image-->
+    <LinearLayout
+        android:layout_below="@+id/EditKitchenEditPassword"
+        android:id="@+id/EditKitchenImageLinearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables"
+        >
+
+        <!--EditKitchenImageView EditKitchenImage-->
+        <ImageView
+            android:id="@+id/EditKitchenImageImageView"
+            android:src="@drawable/add_image"
+            android:onClick="EditKitchenImageListenerImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            tools:ignore="ContentDescription"
+            />
+
+        <!--EditKitchenImageTextViewDescription-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_image_text"
+            />
+
+    </LinearLayout>
+
+
+
     <!--LinearLayout of add and cancel buttons-->
     <LinearLayout
-    android:layout_below="@+id/EditKitchenEditPassword"
+    android:layout_below="@+id/EditKitchenImageLinearLayout"
     android:layout_centerInParent="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

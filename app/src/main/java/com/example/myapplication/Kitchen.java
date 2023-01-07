@@ -5,6 +5,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -73,8 +74,10 @@ public class Kitchen extends ToolbarMenu
                 String getKitchenName= kitchenCursor.getString(1);
                 //KitchenPassword for kitchen place in colum 2 in Table_Kitchen
                 String getKitchenPassword=kitchenCursor.getString(2);
+                //KitchenImage for Kitchen place in colum 3 in Table_Kitchen
+                byte[] getKitchenImage=kitchenCursor.getBlob(3);
                 //add KitchenDetails to ArrayList KitchenDataModels
-                kitchenDataModels.add(new KitchenDataModel(getKitchenId, getKitchenName,getKitchenPassword));
+                kitchenDataModels.add(new KitchenDataModel(getKitchenId, getKitchenName,getKitchenPassword,getKitchenImage));
             }
             while(kitchenCursor.moveToNext());
         }
@@ -126,6 +129,8 @@ public class Kitchen extends ToolbarMenu
                     editKitchenIntent.putExtra("KitchenName", kitchenAdapter.getItem(index).getKitchenNameDataModel());
                     //send KitchenPassword to activity edit kitchen
                     editKitchenIntent.putExtra("KitchenPassword", kitchenAdapter.getItem(index).getKitchenPasswordDataModel());
+                    //send KitchenImage to activity edit kitchen
+                    editKitchenIntent.putExtra("KitchenImage", kitchenAdapter.getItem(index).getKitchenImageDataModel());
                     //start edit food activity
                     startActivity(editKitchenIntent);
                 }

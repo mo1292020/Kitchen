@@ -2,13 +2,19 @@ package com.example.myapplication;
 
 //import libraries
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 //This is CustomAdapter For Store  Kitchen KitchenDataModelDataType
@@ -22,6 +28,9 @@ public class KitchenCustomAdapter extends ArrayAdapter<KitchenDataModel>
     {
         //TextView to show name of Kitchen in item list
         TextView KitchenNameTextView;
+        //ImageView to show image of kitchen in item list
+        ImageView KitchenImageImageView;
+
     }
 
     //Constructor
@@ -55,6 +64,8 @@ public class KitchenCustomAdapter extends ArrayAdapter<KitchenDataModel>
             convertView = inflater.inflate(R.layout.kitchen_row_item, parent, false);
             //link KitchenNameTextView with our KitchenNameTextView
             viewHolder.KitchenNameTextView =  convertView.findViewById(R.id.KitchenName);
+            //link KitchenImageImageView with our KitchenImageImageView
+            viewHolder.KitchenImageImageView =  convertView.findViewById(R.id.KitchenImageImageView);
             //link our view with ResultView
             result=convertView;
             //store ViewHolderData at our view
@@ -83,6 +94,12 @@ public class KitchenCustomAdapter extends ArrayAdapter<KitchenDataModel>
 
         //get KitchenName from our DataModel and set to KitchenNameTextView
         viewHolder.KitchenNameTextView.setText(dataModel.getKitchenNameDataModel());
+        //get KitchenImage from our DataModel
+        InputStream GetKitchenImageBitmap = new ByteArrayInputStream(dataModel.getKitchenImageDataModel());
+        //convert it to bitmap
+        Bitmap KitchenImageBitmap = BitmapFactory.decodeStream(GetKitchenImageBitmap);
+        // set to KitchenImageImageView
+        viewHolder.KitchenImageImageView.setImageBitmap(KitchenImageBitmap);
 
         // Return the completed view to render on screen
         return convertView;

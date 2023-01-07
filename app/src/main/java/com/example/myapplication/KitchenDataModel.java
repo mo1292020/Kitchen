@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.net.Uri;
+
 //This is DataModel For Kitchen
 public class KitchenDataModel
 {
@@ -10,9 +12,12 @@ public class KitchenDataModel
     String KitchenNameDataModel;
     //String to store kitchen password
     String KitchenPasswordDataModel;
+    //Uri to store kitchen uri image
+    byte [] KitchenImageDataModel;
+
 
     //Constructor
-    public KitchenDataModel(String KitchenIdDataModel, String KitchenNameDataModel, String KitchenPasswordDataModel)
+    public KitchenDataModel(String KitchenIdDataModel, String KitchenNameDataModel, String KitchenPasswordDataModel, byte [] KitchenImageDataModel)
     {
         //set KitchenId
         this.KitchenIdDataModel = KitchenIdDataModel;
@@ -20,6 +25,9 @@ public class KitchenDataModel
         this.KitchenNameDataModel = KitchenNameDataModel;
         //set KitchenPassword
         this.KitchenPasswordDataModel = KitchenPasswordDataModel;
+        //set KitchenImage
+        this.KitchenImageDataModel = KitchenImageDataModel;
+
     }
 
     //method to return KitchenId
@@ -41,6 +49,13 @@ public class KitchenDataModel
     {
         //return KitchenPassword
         return KitchenPasswordDataModel;
+    }
+
+    //method to return KitchenImage
+    public byte[] getKitchenImageDataModel()
+    {
+        //return KitchenImage
+        return KitchenImageDataModel;
     }
 
 }

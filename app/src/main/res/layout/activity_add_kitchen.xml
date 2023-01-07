@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.AddKitchen"
+    android:background="@drawable/background"
     >
 
     <!--AddKitchenAppbar to set AddKitchenToolbar-->
@@ -30,12 +31,12 @@
     <ImageView
         android:id="@+id/AddKitchenImageView"
         android:src="@drawable/kitchen"
-        android:contentDescription="@string/description_image_add_kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:layout_below="@id/AddKitchenAppbar"
         android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription"
     />
 
     <!--AddKitchenEditText to insert kitchen name-->
@@ -68,9 +69,43 @@
         android:ems="12"
     />
 
+    <!--LinearLayout of add new Kitchen Image-->
+    <LinearLayout
+        android:layout_below="@+id/AddKitchenEditPassword"
+        android:id="@+id/AddKitchenImageLinearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables"
+    >
+
+        <!--AddKitchenImageView AddKitchenImage-->
+        <ImageView
+            android:id="@+id/AddKitchenImageImageView"
+            android:src="@drawable/add_image"
+            android:onClick="AddKitchenImageListenerImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            tools:ignore="ContentDescription"
+        />
+
+        <!--AddKitchenImageTextViewDescription-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_image_text"
+         />
+
+    </LinearLayout>
+
+
+
     <!--LinearLayout of add and cancel buttons-->
     <LinearLayout
-    android:layout_below="@+id/AddKitchenEditPassword"
+    android:layout_below="@+id/AddKitchenImageLinearLayout"
     android:layout_centerHorizontal="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
