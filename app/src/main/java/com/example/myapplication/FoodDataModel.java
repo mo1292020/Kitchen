@@ -12,9 +12,11 @@ public class FoodDataModel
     String FoodPriceDataModel;
     //String to store Kitchen Id of food
     String KitchenFoodIdDataModel;
+    //byte to store food byte image
+    byte [] FoodImageDataModel;
 
     //Constructor
-    public FoodDataModel(String FoodIdDataModel, String FoodNameDataModel, String FoodPriceDataModel, String KitchenFoodIdDataModel)
+    public FoodDataModel(String FoodIdDataModel, String FoodNameDataModel, String FoodPriceDataModel, String KitchenFoodIdDataModel, byte [] FoodImageDataModel)
     {
         //set FoodId
         this.FoodIdDataModel = FoodIdDataModel;
@@ -24,6 +26,9 @@ public class FoodDataModel
         this.FoodPriceDataModel = FoodPriceDataModel;
         //set KitchenFoodId
         this.KitchenFoodIdDataModel = KitchenFoodIdDataModel;
+        //set FoodImage
+        this.FoodImageDataModel = FoodImageDataModel;
+
     }
 
     //method to return FoodID
@@ -53,6 +58,14 @@ public class FoodDataModel
         //return KitchenFoodId
         return KitchenFoodIdDataModel;
     }
+
+    //method to return FoodImage
+    public byte[] getFoodImageDataModel()
+    {
+        //return KitchenImage
+        return FoodImageDataModel;
+    }
+
 
 
 }

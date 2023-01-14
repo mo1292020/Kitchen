@@ -30,14 +30,16 @@
 
 
     <!--KitchenListView to show all kitchen-->
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/KitchenListView"
         android:layout_below="@+id/KitchenAppbar"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/white"
-    />
+        android:scrollbars="horizontal"
+
+        />
 
     <!--AddKitchenButtonIcon to start AddKitchenActivity to add new kitchen -->
     <ImageView

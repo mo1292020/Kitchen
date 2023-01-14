@@ -12,7 +12,7 @@ public class KitchenDataModel
     String KitchenNameDataModel;
     //String to store kitchen password
     String KitchenPasswordDataModel;
-    //Uri to store kitchen uri image
+    //byte to store kitchen byte image
     byte [] KitchenImageDataModel;
 
 

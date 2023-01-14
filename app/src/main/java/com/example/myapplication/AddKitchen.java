@@ -37,7 +37,7 @@ public class AddKitchen extends ToolbarMenu
         //Set UI AddKitchen activity for AddKitchen activity
         setContentView(R.layout.activity_add_kitchen);
         //AddKitchenToolbar UI
-        Toolbar addKitchenToolbar=(Toolbar) findViewById(R.id.AddKitchenToolbar);
+        Toolbar addKitchenToolbar= findViewById(R.id.AddKitchenToolbar);
         //Set AddKitchenToolbar to our activity
         setSupportActionBar(addKitchenToolbar);
     }

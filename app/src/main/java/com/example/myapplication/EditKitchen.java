@@ -48,13 +48,13 @@ public class EditKitchen extends ToolbarMenu
         //EditKitchenExtras to receive any message
         Bundle editKitchenExtras = getIntent().getExtras();
         //receive KitchenId from Kitchen activity
-        kitchenId = editKitchenExtras.getString("KitchenId");
+        kitchenId = editKitchenExtras.getString("kitchenId");
         //receive KitchenName from Kitchen activity
-        String kitchenName = editKitchenExtras.getString("KitchenName");
+        String kitchenName = editKitchenExtras.getString("kitchenName");
         //receive KitchenPassword from Kitchen activity
-        String kitchenPassword = editKitchenExtras.getString("KitchenPassword");
+        String kitchenPassword = editKitchenExtras.getString("kitchenPassword");
         //receive KitchenImage from Kitchen activity
-        byte [] kitchenImage = editKitchenExtras.getByteArray("KitchenImage");
+        byte [] kitchenImage = editKitchenExtras.getByteArray("kitchenImage");
         //convert KitchenImage
         InputStream GetKitchenImageBitmap = new ByteArrayInputStream(kitchenImage);
         //convert it to bitmap

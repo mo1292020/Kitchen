@@ -74,9 +74,44 @@
         android:ems="12"
     />
 
+
+    <!--LinearLayout of edit Food Image-->
+    <LinearLayout
+        android:layout_below="@+id/EditFoodEditPrice"
+        android:id="@+id/EditFoodImageLinearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables"
+        >
+
+        <!--EditFoodImageView EditFoodImage-->
+        <ImageView
+            android:id="@+id/EditFoodImageImageView"
+            android:src="@drawable/add_image"
+            android:onClick="EditFoodImageListenerImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            tools:ignore="ContentDescription"
+            />
+
+        <!--EditFoodImageTextViewDescription-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_image_text"
+            />
+
+    </LinearLayout>
+
+
+
     <!--LinearLayout of add and cancel buttons-->
     <LinearLayout
-    android:layout_below="@+id/EditFoodEditPrice"
+    android:layout_below="@+id/EditFoodImageLinearLayout"
     android:layout_centerInParent="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

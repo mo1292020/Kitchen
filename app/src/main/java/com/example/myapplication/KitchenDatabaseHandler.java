@@ -45,6 +45,8 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
     private static final String KEY_FoodName = "FoodName";
     //food price
     private static final String KEY_FoodPrice = "FoodPrice";
+    //kitchen image
+    private static final String KEY_FoodImage = "FoodImage";
 
     // KitchenTable Create Statements with id as a primary key auto increment & name & password & image
     private static final String CREATE_Kitchen_TABLE = "CREATE TABLE " + TABLE_Kitchen + "("
@@ -58,8 +60,9 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
     private static final String CREATE_Food_TABLE = "CREATE TABLE " + TABLE_Food + "("
             + KEY_FoodID +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
             + KEY_FoodName + " TEXT, "
-            + KEY_FoodPrice + " TEXT, "
+            + KEY_FoodPrice + " integer, "
             + KEY_FoodKitchenID + " integer,"
+            + KEY_FoodImage + " BLOB,"
             + " FOREIGN KEY ("+KEY_FoodKitchenID+") REFERENCES "+TABLE_Kitchen+"("+KEY_KitchenID+"));";
 
 
@@ -133,7 +136,7 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
 
     //method to add new Food with name & price & auto increment FoodId
     // & ForeignKeyId linked with his kitchen in FoodTable
-    public void addFood(String FoodKitchenId, String NameFood, String PriceFood)
+    public void addFood(String FoodKitchenId, String NameFood, String PriceFood, Bitmap ImageFood)
     {
         //our writeable database connection
         SQLiteDatabase database = this.getWritableDatabase();
@@ -145,6 +148,10 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
         values.put(KEY_FoodPrice, PriceFood);
         //Put  FoodKitchenId at KEY_FoodKitchenId
         values.put(KEY_FoodKitchenID,FoodKitchenId);
+        //convert ImageFood to ByteArray by getBitmapAsByteArray method to store
+        byte[] ImageFoodBiteArray = getBitmapAsByteArray(ImageFood);
+        //Put ImageFoodBiteArray at KEY_FoodImage
+        values.put(KEY_FoodImage, ImageFoodBiteArray);
         // Inserting Row
         database.insert(TABLE_Food, null, values);
         // Closing database connection
@@ -173,7 +180,7 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
     }
 
     //method to update food row by id
-    public void updateFood(String IdFood,String NameFood, String PriceFood)
+    public void updateFood(String IdFood,String NameFood, String PriceFood,Bitmap ImageFood)
     {
         //our writeable database connection
         SQLiteDatabase database = this.getWritableDatabase();
@@ -183,6 +190,10 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
         updateValues.put(KEY_FoodName, NameFood);
         //Put  PriceFood at KEY_FoodPrice
         updateValues.put(KEY_FoodPrice, PriceFood);
+        //convert ImageFood to ByteArray by getBitmapAsByteArray method to update
+        byte[] ImageFoodBiteArray = getBitmapAsByteArray(ImageFood);
+        //Put ImageFoodBiteArray at KEY_FoodImage
+        updateValues.put(KEY_FoodImage, ImageFoodBiteArray);
         //update row with Id IdFood
         database.update(TABLE_Food, updateValues, KEY_FoodID + "=?", new String[] {IdFood});
         // Closing database connection

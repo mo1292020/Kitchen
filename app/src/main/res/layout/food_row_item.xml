@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
+    android:id="@+id/FoodRowItemRelativeLayout"
     >
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -13,29 +14,27 @@
         >
 
     <ImageView
-        android:id="@+id/Fid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/FoodImageImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
         android:src="@drawable/kitchen" />
 
     <TextView
-        android:id="@+id/Fname"
+        android:id="@+id/FoodNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Android 6.0"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         />
 
     <TextView
-        android:id="@+id/Fprice"
+        android:id="@+id/FoodPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Fname"
+        android:layout_below="@+id/FoodNameTextView"
         android:layout_marginTop="5dp"
-        android:text="Android 6.0"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         />
 
     </RelativeLayout>

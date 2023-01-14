@@ -3,6 +3,9 @@ package com.example.myapplication;
 //import libraries
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,11 +21,9 @@ public class Food extends ToolbarMenu
     //ArrayList to store the Food from Database and then add to ArrayAdapter to set in ListView
     ArrayList<FoodDataModel> foodDataModels;
     //Our List View to show Food
-    ListView foodListView;
+    RecyclerView foodListView;
     //Array Adapter to manage recycle data
     private  FoodCustomAdapter foodAdapter;
-    //popup menu for edit and delete food
-    private  PopupMenu foodPopupMenu;
     //KitchenId that request to show their food
     private static String kitchenId;
 
@@ -52,13 +53,13 @@ public class Food extends ToolbarMenu
         //intent Activity Add Food
         Intent addFoodIntent = new Intent(this, AddFood.class);
         //send kitchen id to link food with it in database
-        addFoodIntent.putExtra("KitchenId", kitchenId);
+        addFoodIntent.putExtra("kitchenId", kitchenId);
         //start add food activity
         startActivity(addFoodIntent);
     }
 
     //method to fetch food data from database and add in ListView
-    public void CreateList(String KitchenId)
+    public void CreateList(String kitchenId)
     {
         //Our UI Food ListView
         foodListView =findViewById(R.id.FoodListView);
@@ -82,72 +83,26 @@ public class Food extends ToolbarMenu
                 String getFoodPrice= foodCursor.getString(2);
                 //KitchenFoodName for food place in colum 3 in Table_Food
                 String getKitchenFoodID= foodCursor.getString(3);
+                //KitchenImage for Kitchen place in colum 3 in Table_Kitchen
+                byte[] getFoodImage=foodCursor.getBlob(4);
                 //Check if this food belong to this KitchenId or not
-                if(getKitchenFoodID.equals(KitchenId))
+                if(getKitchenFoodID.equals(kitchenId))
                     //add FoodDetails to ArrayList FoodDataModels
-                    foodDataModels.add(new FoodDataModel(getFoodId, getFoodName, getFoodPrice, getKitchenFoodID));
+                    foodDataModels.add(new FoodDataModel(getFoodId, getFoodName, getFoodPrice, getKitchenFoodID,getFoodImage));
             }
             while(foodCursor.moveToNext());
         }
 
-        //add our data to FoodAdapter and our context that recycle data in
-        foodAdapter = new FoodCustomAdapter(foodDataModels,getApplicationContext());
-        //add adapter to our FoodListView
-        foodListView.setAdapter(foodAdapter);
-
-        //add click listener for every food to show food details until now
-        foodListView.setOnItemClickListener((parent, view, position, id) ->
+        if(foodDataModels!=null)
         {
-            //get foodName from FoodAdapter
-            String name = foodAdapter.getItem(position).getFoodNameDataModel();
-            //get foodPrice from FoodAdapter
-            String price= foodAdapter.getItem(position).getFoodPriceDataModel();
-            //show them in a toast
-            Toast.makeText(Food.this,"Food "+name+" with price "+price+" ordered", Toast.LENGTH_SHORT).show();
-        });
+            //add our data to FoodAdapter and our context that recycle data in
+            foodAdapter = new FoodCustomAdapter(getApplicationContext(), foodDataModels);
+            //add LinearLayoutManager to FoodListView
+            foodListView.setLayoutManager(new LinearLayoutManager(this));
+            //add adapter to our FoodListView
+            foodListView.setAdapter(foodAdapter);
+        }
 
-        //add LongClick listener for every food to Edit or Delete food by PopMenu
-        foodListView.setOnItemLongClickListener((arg0, view, index, arg3) ->
-        {
-            //Create FoodPopupMenu
-            foodPopupMenu = new PopupMenu(Food.this, view);
-            //add our UI to FoodPopupMenu
-            foodPopupMenu.getMenuInflater().inflate(R.menu.menu_edit_delete, foodPopupMenu.getMenu());
-
-            //add click listener for Edit or Delete food in FoodPopupMenu
-            foodPopupMenu.setOnMenuItemClickListener(item -> {
-                //if choose to delete food
-                if(item.getTitle().equals("Delete"))
-                {
-                    //delete food from database
-                    database.DeleteFood(foodAdapter.getItem(index).getFoodIdDataModel());
-                    //delete food from FoodAdapter
-                    foodAdapter.remove(foodDataModels.get(index));
-                    //notify Change data to adapter to recycle
-                    foodAdapter.notifyDataSetChanged();
-                }
-                //if choose to edit kitchen
-                if(item.getTitle().equals("Edit"))
-                {
-                    //intent for edit food
-                    Intent editFoodIntent = new Intent(getApplicationContext(),EditFood.class);
-                    //send FoodId to activity edit food
-                    editFoodIntent.putExtra("foodId", foodAdapter.getItem(index).getFoodIdDataModel());
-                    //send FoodName to activity edit food
-                    editFoodIntent.putExtra("foodName", foodAdapter.getItem(index).getFoodNameDataModel());
-                    //send FoodPrice to activity edit food
-                    editFoodIntent.putExtra("foodPrice", foodAdapter.getItem(index).getFoodPriceDataModel());
-                    //send FoodKitchenId to activity edit food
-                    editFoodIntent.putExtra("kitchenId", foodAdapter.getItem(index).getKitchenFoodIdDataModel());
-                    //start edit food activity
-                    startActivity(editFoodIntent);
-                }
-
-                return true;
-            });
-            foodPopupMenu.show();
-            return true;
-        });
     }
 
 }

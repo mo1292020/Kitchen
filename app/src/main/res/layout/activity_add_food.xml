@@ -72,9 +72,46 @@
         android:ems="12"
     />
 
+
+
+    <!--LinearLayout of add new Food Image-->
+    <LinearLayout
+        android:layout_below="@+id/AddFoodEditPrice"
+        android:id="@+id/AddFoodImageLinearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UseCompoundDrawables"
+        >
+
+        <!--AddFoodImageView AddFoodImage-->
+        <ImageView
+            android:id="@+id/AddFoodImageImageView"
+            android:src="@drawable/add_image"
+            android:onClick="AddFoodImageListenerImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            tools:ignore="ContentDescription"
+            />
+
+        <!--AddFoodImageTextViewDescription-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_image_text"
+            />
+
+    </LinearLayout>
+
+
+
+
     <!--LinearLayout of add and cancel buttons-->
     <LinearLayout
-    android:layout_below="@+id/AddFoodEditPrice"
+    android:layout_below="@+id/AddFoodImageLinearLayout"
     android:layout_centerHorizontal="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
