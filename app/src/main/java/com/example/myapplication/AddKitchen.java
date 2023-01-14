@@ -41,6 +41,8 @@ public class AddKitchen extends ToolbarMenu
         Toolbar addKitchenToolbar= findViewById(R.id.AddKitchenToolbar);
         //Set AddKitchenToolbar to our activity
         setSupportActionBar(addKitchenToolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //handel OnBackPress of our activity
         AddKitchen.this.getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true)

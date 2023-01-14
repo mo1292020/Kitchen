@@ -46,6 +46,8 @@ public class EditKitchen extends ToolbarMenu
         Toolbar editKitchenToolbar=(Toolbar) findViewById(R.id.EditKitchenToolbar);
         //Set EditKitchenToolbar to our activity
         setSupportActionBar(editKitchenToolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //EditKitchenExtras to receive any message
         Bundle editKitchenExtras = getIntent().getExtras();
         //receive KitchenId from Kitchen activity

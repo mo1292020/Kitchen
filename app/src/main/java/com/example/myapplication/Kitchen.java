@@ -32,11 +32,12 @@ public class Kitchen extends ToolbarMenu
         //Save Instance State for Kitchen activity
         super.onCreate(savedInstanceState);
         //Set UI kitchen activity for Kitchen activity
-        setContentView(R.layout.activity_kitchen);
-        //KitchenToolbar UI
+        setContentView(R.layout.activity_kitchen);        //KitchenToolbar UI
         Toolbar kitchenToolbar=findViewById(R.id.KitchenToolbar);
         //Set KitchenToolbar to our activity
         setSupportActionBar(kitchenToolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //method to fetch kitchen data from database and add in ListView
         CreateKitchenListView();
         //handel OnBackPress of our activity

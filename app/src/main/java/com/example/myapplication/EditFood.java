@@ -48,6 +48,8 @@ public class EditFood extends ToolbarMenu
         Toolbar editFoodToolbar=(Toolbar) findViewById(R.id.EditFoodToolbar);
         //Set EditFoodToolbar to our activity
         setSupportActionBar(editFoodToolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //EditFoodExtras to receive any message
         Bundle editFoodExtras = getIntent().getExtras();
         //receive FoodId from Food activity

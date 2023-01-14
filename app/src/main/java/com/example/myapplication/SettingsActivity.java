@@ -24,6 +24,8 @@ public class SettingsActivity extends AppCompatActivity
         Toolbar toolbar= findViewById(R.id.SettingToolbar);
         //Set SettingToolbar to our activity
         setSupportActionBar(toolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //replace our fragment with id container with our preference
         getSupportFragmentManager().beginTransaction().replace(R.id.FregmentContainerSetting, new SettingsFragment()).commit();
         //handel OnBackPress of our activity

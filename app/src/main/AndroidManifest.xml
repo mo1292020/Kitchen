@@ -19,7 +19,7 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings">
+            android:label="  Setting">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -27,7 +27,7 @@
         <activity
             android:name=".EditFood"
             android:exported="false"
-            android:label="Edit Food">
+            android:label="  Edit Food">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -35,7 +35,7 @@
         <activity
             android:name=".EditKitchen"
             android:exported="false"
-            android:label="Edit Kitchen">
+            android:label="  Edit Kitchen">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -43,7 +43,7 @@
         <activity
             android:name=".AddFood"
             android:exported="false"
-            android:label="Add Food">
+            android:label="  Add Food">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -51,7 +51,7 @@
         <activity
             android:name=".Food"
             android:exported="false"
-            android:label="Food">
+            android:label="  Food">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -59,7 +59,7 @@
         <activity
             android:name=".AddKitchen"
             android:exported="false"
-            android:label="Add Kitchen">
+            android:label="  Add Kitchen">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -67,7 +67,7 @@
         <activity
             android:name=".Kitchen"
             android:exported="true"
-            android:label="Kitchen"
+            android:label="  Kitchen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

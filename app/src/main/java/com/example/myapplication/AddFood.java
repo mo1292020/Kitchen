@@ -44,6 +44,8 @@ public class AddFood extends ToolbarMenu
         Toolbar addFoodToolbar= findViewById(R.id.AddFoodToolbar);
         //Set AddFoodToolbar to our activity
         setSupportActionBar(addFoodToolbar);
+        //Set logo to toolbar
+        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //AddFoodExtras to receive any message
         Bundle addFoodExtras = getIntent().getExtras();
         //receive kitchenId from Food activity
