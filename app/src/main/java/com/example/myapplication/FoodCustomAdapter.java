@@ -127,6 +127,8 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
 
     //Foods Data
     ArrayList<FoodDataModel> foodData;
+    //ArrayList to check every row has animation
+    ArrayList<Boolean> hasAnimation=new ArrayList<>();
     //OurContext
     Context context;
 
@@ -229,8 +231,17 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
             return true;
         });
 
-        // Here you apply the animation when the view is bound
-        setAnimation(holder.itemView,position);
+        //mark as a not hasAnimation
+        hasAnimation.add(false);
+        //check if it hasAnimation
+        System.out.println(position);
+        if(!hasAnimation.get(position)&&position<5)
+        {
+            // Here you apply the animation when the view is bound
+            setAnimation(holder.itemView, position);
+            //mark as hasAnimation
+            hasAnimation.set(position,true);
+        }
 
     }
 
@@ -274,13 +285,12 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
     private void setAnimation(View viewToAnimate, int position)
     {
         // If the bound view wasn't previously displayed on screen, it's animated
-        if(position<5)
-        {
+
             //get our animation and load
             Animation animation = AnimationUtils.loadAnimation(context, (position % 2 == 0) ? R.anim.left_from_right : R.anim.right_from_left);
             //set our animation to our listview
             viewToAnimate.startAnimation(animation);
-        }
+
 
     }
 }
