@@ -54,7 +54,7 @@ public class ToolbarMenu extends AppCompatActivity
         }
 
         //return item again
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -47,6 +48,23 @@ public class AddFood extends ToolbarMenu
         Bundle addFoodExtras = getIntent().getExtras();
         //receive kitchenId from Food activity
         kitchenId= addFoodExtras.getString("kitchenId");
+
+        //handel OnBackPress of our activity
+        AddFood.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //intent Activity to back to Food activity
+                        Intent foodIntent = new Intent(AddFood.this, Food.class);
+                        //send kitchen id to food activity to show food link with
+                        foodIntent.putExtra("kitchenId",kitchenId);
+                        //start Food activity
+                        startActivity(foodIntent);
+                    }
+                });
+
     }
 
     // OnClick method for AddFoodButton to add new Food into database

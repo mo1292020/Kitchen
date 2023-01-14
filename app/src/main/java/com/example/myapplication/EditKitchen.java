@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -71,6 +72,19 @@ public class EditKitchen extends ToolbarMenu
         kitchenImageImageView =findViewById(R.id.EditKitchenImageImageView);
         //set kitchenImage to KitchenImageEditText
         kitchenImageImageView.setImageBitmap(kitchenImageBitmap);
+        //handel OnBackPress of our activity
+        EditKitchen.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //intent Activity to back to Kitchen activity
+                        Intent kitchenIntent = new Intent(EditKitchen.this, Kitchen.class);
+                        //start Food activity
+                        startActivity(kitchenIntent);
+                    }
+                });
     }
 
     // OnClick method for EditKitchenButton to edit kitchen

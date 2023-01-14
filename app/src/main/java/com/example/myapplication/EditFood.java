@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -75,6 +76,21 @@ public class EditFood extends ToolbarMenu
         FoodImageImageView =findViewById(R.id.EditFoodImageImageView);
         //set FoodImage to FoodImageEditText
         FoodImageImageView.setImageBitmap(foodImageBitmap);
+        //handel OnBackPress of our activity
+        EditFood.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //intent Activity to back to Food activity
+                        Intent foodIntent = new Intent(EditFood.this, Food.class);
+                        //send kitchen id to food activity to show food link with
+                        foodIntent.putExtra("kitchenId",kitchenId);
+                        //start Food activity
+                        startActivity(foodIntent);
+                    }
+                });
     }
 
     // OnClick method for EditFoodButton to edit food

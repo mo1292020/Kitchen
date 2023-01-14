@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+        import androidx.activity.OnBackPressedCallback;
         import androidx.appcompat.widget.Toolbar;
         import android.content.Intent;
         import android.graphics.Bitmap;
@@ -40,6 +41,20 @@ public class AddKitchen extends ToolbarMenu
         Toolbar addKitchenToolbar= findViewById(R.id.AddKitchenToolbar);
         //Set AddKitchenToolbar to our activity
         setSupportActionBar(addKitchenToolbar);
+        //handel OnBackPress of our activity
+        AddKitchen.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //intent Activity to back to Kitchen activity
+                        Intent kitchenIntent = new Intent(AddKitchen.this, Kitchen.class);
+                        //start Kitchen activity
+                        startActivity(kitchenIntent);
+                    }
+                });
+
     }
 
     // OnClick method for AddKitchenButton to add new Kitchen into database

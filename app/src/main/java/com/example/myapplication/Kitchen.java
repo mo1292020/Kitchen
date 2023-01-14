@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +39,17 @@ public class Kitchen extends ToolbarMenu
         setSupportActionBar(kitchenToolbar);
         //method to fetch kitchen data from database and add in ListView
         CreateKitchenListView();
+        //handel OnBackPress of our activity
+        Kitchen.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //empty stack and close app
+                        finishAffinity();
+                    }
+                });
     }
 
     // OnClick method for ImageView Icon to add new Kitchen

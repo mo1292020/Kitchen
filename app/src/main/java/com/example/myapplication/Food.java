@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 //import libraries
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +46,19 @@ public class Food extends ToolbarMenu
         kitchenId = extras.getString("kitchenId");
         //method to fetch food data from database and add in ListView
         CreateList(kitchenId);
+        //handel OnBackPress of our activity
+        Food.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        //intent Activity to back to Kitchen activity
+                        Intent foodIntent = new Intent(Food.this, Kitchen.class);
+                        //start Kitchen activity
+                        startActivity(foodIntent);
+                    }
+                });
     }
 
     // OnClick method for ImageView Icon to add new Food

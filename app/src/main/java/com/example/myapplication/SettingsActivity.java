@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
 //import libraries
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,11 +21,21 @@ public class SettingsActivity extends AppCompatActivity
         //Set UI preferences activity for Setting activity
         setContentView(R.layout.activity_preferences);
         //SettingToolbar UI
-        Toolbar toolbar=(Toolbar) findViewById(R.id.SettingToolbar);
+        Toolbar toolbar= findViewById(R.id.SettingToolbar);
         //Set SettingToolbar to our activity
         setSupportActionBar(toolbar);
         //replace our fragment with id container with our preference
         getSupportFragmentManager().beginTransaction().replace(R.id.FregmentContainerSetting, new SettingsFragment()).commit();
+        //handel OnBackPress of our activity
+        SettingsActivity.this.getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true)
+                {
+                    @Override
+                    public void handleOnBackPressed()
+                    {
+                        SettingsActivity.this.finish();
+                    }
+                });
     }
 
 }
