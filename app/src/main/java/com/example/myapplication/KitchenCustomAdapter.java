@@ -239,7 +239,6 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
         //mark as a not hasAnimation
         hasAnimation.add(false);
         //check if it hasAnimation
-        System.out.println(position);
         if(!hasAnimation.get(position)&&position<5)
         {
             // Here you apply the animation when the view is bound
