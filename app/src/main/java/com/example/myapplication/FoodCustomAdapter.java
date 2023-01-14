@@ -108,6 +108,8 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
@@ -227,6 +229,9 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
             return true;
         });
 
+        // Here you apply the animation when the view is bound
+        setAnimation(holder.itemView,position);
+
     }
 
     //method return count of food
@@ -263,5 +268,19 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
             //link with FoodRelativeLayout in xml
             this.FoodRelativeLayout = FoodListItem.findViewById(R.id.FoodRowItemRelativeLayout);
         }
+    }
+
+    //Here is the key method to apply the animation
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if(position<5)
+        {
+            //get our animation and load
+            Animation animation = AnimationUtils.loadAnimation(context, (position % 2 == 0) ? R.anim.left_from_right : R.anim.right_from_left);
+            //set our animation to our listview
+            viewToAnimate.startAnimation(animation);
+        }
+
     }
 }
