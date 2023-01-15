@@ -3,6 +3,7 @@ package com.example.myapplication;
 //import libraries
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +22,13 @@ public class SettingsActivity extends AppCompatActivity
         //Set UI preferences activity for Setting activity
         setContentView(R.layout.activity_preferences);
         //SettingToolbar UI
-        Toolbar toolbar= findViewById(R.id.SettingToolbar);
+        Toolbar toolbar= findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Setting
+        toolbarTitle.setText("Setting");
         //Set SettingToolbar to our activity
         setSupportActionBar(toolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //replace our fragment with id container with our preference
         getSupportFragmentManager().beginTransaction().replace(R.id.FregmentContainerSetting, new SettingsFragment()).commit();
         //handel OnBackPress of our activity

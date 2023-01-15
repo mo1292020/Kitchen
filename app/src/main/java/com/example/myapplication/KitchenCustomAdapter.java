@@ -176,7 +176,8 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
         Bitmap KitchenImageBitmap = BitmapFactory.decodeStream(GetKitchenImageBitmap);
         //set KitchenImage as a Bitmap to KitchenImageImageView
         holder.KitchenImageImageView.setImageBitmap(KitchenImageBitmap);
-
+        //setBackground to every item based on theme
+        //holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
         //set onClickListener to every item as a RelativeLayout to open their FoodList
         holder.KitchenRelativeLayout.setOnClickListener(view ->
         {
@@ -239,7 +240,7 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
         //mark as a not hasAnimation
         hasAnimation.add(false);
         //check if it hasAnimation
-        if(!hasAnimation.get(position)&&position<5)
+        if(!hasAnimation.get(position)&&position<2)
         {
             // Here you apply the animation when the view is bound
             setAnimation(holder.itemView, position);
@@ -290,7 +291,6 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
             Animation animation = AnimationUtils.loadAnimation(context, (position % 2 == 0) ? R.anim.left_from_right : R.anim.right_from_left);
             //set our animation to our listview
             viewToAnimate.startAnimation(animation);
-
 
     }
 }

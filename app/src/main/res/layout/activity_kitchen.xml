@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--RelativeLayout of Kitchen activity -->
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.myapplication.Kitchen"
-    android:background="@drawable/background"
->
+    android:id="@+id/KitchenRelativeLayout"
+    tools:context="com.example.myapplication.Kitchen">
 
-    <!--KitchenAppbar to set KitchenToolbar-->
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/KitchenAppbar"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
     >
 
-    <!--KitchenToolbar-->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/KitchenToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-    />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+        />
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
 
     <!--KitchenListView to show all kitchen-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/KitchenListView"
-        android:layout_below="@+id/KitchenAppbar"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/toolbarLayout"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/white"
         android:scrollbars="horizontal"
-
         />
+
+    <!--Add Video at Kitchen activity -->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/KitchenGIFView"
+        android:layout_below="@+id/KitchenListView"
+        android:src="@drawable/burger_gif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentBottom="true"
+    />
 
     <!--AddKitchenButtonIcon to start AddKitchenActivity to add new kitchen -->
     <ImageView
@@ -50,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        tools:ignore="ContentDescription"
     />
 
 </RelativeLayout>

@@ -8,44 +8,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.AddKitchen"
-    android:background="@drawable/background"
     >
 
-    <!--AddKitchenAppbar to set AddKitchenToolbar-->
+
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AddKitchenAppbar"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
     >
 
-        <!--AddKitchenToolbar-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/AddKitchenToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <!--AddKitchenImageView KitchenImage-->
     <ImageView
         android:id="@+id/AddKitchenImageView"
+        android:layout_below="@+id/toolbarLayout"
         android:src="@drawable/kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_below="@id/AddKitchenAppbar"
         android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription"
     />
 
     <!--AddKitchenEditText to insert kitchen name-->
     <EditText
         android:id="@+id/AddKitchenEditName"
+        android:hint="Kitchen Name"
         android:inputType="text"
-        android:hint="@string/hint_add_kitchen_name"
-        android:textColorHint="@color/gray"
-        android:autofillHints="@strings/hint_add_kitchen_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -57,10 +54,8 @@
     <!--AddKitchenEditPassword to insert kitchen password-->
     <EditText
         android:id="@+id/AddKitchenEditPassword"
+        android:hint="Kitchen Password"
         android:inputType="textPassword"
-        android:hint="@string/hint_add_kitchen_password"
-        android:autofillHints="Password"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -78,7 +73,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        tools:ignore="UseCompoundDrawables"
     >
 
         <!--AddKitchenImageView AddKitchenImage-->
@@ -89,14 +83,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="20dp"
-            tools:ignore="ContentDescription"
         />
 
         <!--AddKitchenImageTextViewDescription-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_image_text"
+            android:text="New Image"
          />
 
     </LinearLayout>

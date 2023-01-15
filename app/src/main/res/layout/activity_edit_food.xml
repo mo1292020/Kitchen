@@ -8,47 +8,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.EditFood"
-    android:background="@drawable/background"
     >
 
-    <!--EditKitchenAppbar to set EditKitchenToolbar-->
+
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/EditFoodAppbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
     >
 
-        <!--EditKitchenToolbar-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/EditFoodToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
 
     <!--EditFoodImageView EditFoodImage-->
     <ImageView
         android:id="@+id/EditFoodImageView"
+        android:layout_below="@+id/toolbarLayout"
         android:src="@drawable/kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_below="@id/EditFoodAppbar"
         android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription"
     />
 
     <!--EditFoodEditText to edit food name-->
     <EditText
         android:id="@+id/EditFoodEditName"
+        android:hint="Food Name"
         android:inputType="text"
-        android:hint="@string/hint_edit_food_name"
-        android:autofillHints="@strings/hint_edit_food_name"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -62,10 +56,8 @@
     <!--EditFoodEditPrice to edit food price-->
     <EditText
         android:id="@+id/EditFoodEditPrice"
+        android:hint="Food Price"
         android:inputType="number"
-        android:hint="@string/hint_edit_food_price"
-        android:autofillHints="Price"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -84,7 +76,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        tools:ignore="UseCompoundDrawables"
         >
 
         <!--EditFoodImageView EditFoodImage-->
@@ -95,14 +86,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="20dp"
-            tools:ignore="ContentDescription"
             />
 
         <!--EditFoodImageTextViewDescription-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_image_text"
+            android:text="add image"
             />
 
     </LinearLayout>
@@ -121,7 +111,6 @@
         <!--EditFoodEditButton to edit food -->
         <Button
             android:id="@+id/EditFoodEditButton"
-            android:text="@string/edit_food_edit_button_text"
             android:onClick="EditFoodListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +121,6 @@
         <!--EditFoodCancelButton to cancel editFood -->
         <Button
             android:id="@+id/CancelEditFoodButton"
-            android:text="@string/edit_food_cancel_button_text"
             android:onClick="CancelEditFoodListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

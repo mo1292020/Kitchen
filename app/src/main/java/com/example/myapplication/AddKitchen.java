@@ -11,6 +11,8 @@ package com.example.myapplication;
         import android.view.View;
         import android.widget.EditText;
         import android.widget.ImageView;
+        import android.widget.TextView;
+
         import java.io.ByteArrayOutputStream;
         import java.io.IOException;
 
@@ -38,11 +40,13 @@ public class AddKitchen extends ToolbarMenu
         //Set UI AddKitchen activity for AddKitchen activity
         setContentView(R.layout.activity_add_kitchen);
         //AddKitchenToolbar UI
-        Toolbar addKitchenToolbar= findViewById(R.id.AddKitchenToolbar);
+        Toolbar addKitchenToolbar= findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as AddKitchen
+        toolbarTitle.setText("Add Kitchen");
         //Set AddKitchenToolbar to our activity
         setSupportActionBar(addKitchenToolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //handel OnBackPress of our activity
         AddKitchen.this.getOnBackPressedDispatcher().addCallback(this,
                 new OnBackPressedCallback(true)

@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,11 +44,13 @@ public class EditKitchen extends ToolbarMenu
         //Set UI EditKitchen activity for EditKitchen activity
         setContentView(R.layout.activity_edit_kitchen);
         //EditKitchenToolbar UI
-        Toolbar editKitchenToolbar=(Toolbar) findViewById(R.id.EditKitchenToolbar);
+        Toolbar editKitchenToolbar=(Toolbar) findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Edit Kitchen
+        toolbarTitle.setText("Edit Kitchen");
         //Set EditKitchenToolbar to our activity
         setSupportActionBar(editKitchenToolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //EditKitchenExtras to receive any message
         Bundle editKitchenExtras = getIntent().getExtras();
         //receive KitchenId from Kitchen activity

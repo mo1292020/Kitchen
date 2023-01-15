@@ -7,29 +7,30 @@
     android:id="@+id/activity_catalog_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     >
 
-    <!--SettingAppbar to set SettingToolbar-->
+
+
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/SettingAppbar"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-    >
+        android:layout_height="?android:attr/actionBarSize"
+        >
 
-    <!--SettingToolbar-->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/SettingToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-    />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <!--FrameLayout to replace with  Preferences.xml-->
     <FrameLayout
         android:id="@+id/FregmentContainerSetting"
-        android:layout_below="@+id/SettingAppbar"
+        android:layout_below="@+id/toolbarLayout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:animateLayoutChanges="true"

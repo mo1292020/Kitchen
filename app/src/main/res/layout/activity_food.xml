@@ -8,35 +8,32 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.myapplication.Food"
-    android:background="@drawable/background"
     >
 
-    <!--FoodAppbar to set FoodToolbar-->
+
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/FoodAppbar"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
     >
 
-    <!--FoodToolbar-->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/FoodToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-    />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
+
 
 
     <!--FoodListView to show all food-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FoodListView"
-        android:layout_below="@+id/FoodAppbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:divider="@color/white"
-        android:scrollbars="horizontal"
+        android:layout_below="@+id/toolbarLayout"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
         />
 
     <!--AddFoodButtonIcon to start AddFoodActivity to add new food -->
@@ -48,7 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        tools:ignore="ContentDescription"
     />
 
 </RelativeLayout>

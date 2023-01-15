@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Kitchen</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
@@ -42,4 +42,5 @@
     <string name="edit_food_cancel_button_text">Cancel</string>
     <string name="new_image_text">New Image</string>
     <string name="edit_image_text">add image</string>
+    <string name="mode">Day</string>
 </resources>

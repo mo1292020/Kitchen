@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 //import libraries
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,8 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class Food extends ToolbarMenu
     //ArrayList to store the Food from Database and then add to ArrayAdapter to set in ListView
     ArrayList<FoodDataModel> foodDataModels;
     //Our List View to show Food
-    RecyclerView foodListView;
+    RecyclerView FoodListView;
     //Array Adapter to manage recycle data
     private  FoodCustomAdapter foodAdapter;
     //KitchenId that request to show their food
@@ -37,11 +35,13 @@ public class Food extends ToolbarMenu
         //Set UI food activity for Kitchen activity
         setContentView(R.layout.activity_food);
         //FoodToolbar UI
-        Toolbar toolbar= findViewById(R.id.FoodToolbar);
+        Toolbar toolbar= findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Food
+        toolbarTitle.setText("Food");
         //Set FoodToolbar to our activity
         setSupportActionBar(toolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //extras to receive any message
         Bundle extras = getIntent().getExtras();
         //receive kitchenId from Kitchen activity from item selected
@@ -78,7 +78,7 @@ public class Food extends ToolbarMenu
     public void CreateList(String kitchenId)
     {
         //Our UI Food ListView
-        foodListView =findViewById(R.id.FoodListView);
+        FoodListView =findViewById(R.id.FoodListView);
         //ArrayList to store the Food in Database and then add to ArrayAdapter to set in ListView
         foodDataModels = new ArrayList<>();
         //KitchenDatabaseHandler  class manage our database
@@ -113,10 +113,18 @@ public class Food extends ToolbarMenu
         {
             //add our data to FoodAdapter and our context that recycle data in
             foodAdapter = new FoodCustomAdapter(getApplicationContext(), foodDataModels);
+            //Layout Manager to RecycleView to setOrientation
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            //when you want horizontal
+            //linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            //when you want vertical
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             //add LinearLayoutManager to FoodListView
-            foodListView.setLayoutManager(new LinearLayoutManager(this));
+            FoodListView.setLayoutManager(linearLayoutManager);
+            //hide scrollbar
+            FoodListView.setScrollBarSize(0);
             //add adapter to our FoodListView
-            foodListView.setAdapter(foodAdapter);
+            FoodListView.setAdapter(foodAdapter);
         }
 
     }

@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,11 +46,13 @@ public class EditFood extends ToolbarMenu
         //Set UI EditFood activity for EditFood activity
         setContentView(R.layout.activity_edit_food);
         //EditFoodToolbar UI
-        Toolbar editFoodToolbar=(Toolbar) findViewById(R.id.EditFoodToolbar);
+        Toolbar editFoodToolbar=(Toolbar) findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as EditFood
+        toolbarTitle.setText("Edit Food");
         //Set EditFoodToolbar to our activity
         setSupportActionBar(editFoodToolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //EditFoodExtras to receive any message
         Bundle editFoodExtras = getIntent().getExtras();
         //receive FoodId from Food activity

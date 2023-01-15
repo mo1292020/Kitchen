@@ -8,22 +8,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.EditKitchen"
-    android:background="@drawable/background"
     >
 
-    <!--EditKitchenAppbar to set EditKitchenToolbar-->
+
+    <!--Appbar-->
     <com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/EditKitchenAppbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
     >
 
-        <!--EditFoodToolbar-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/EditKitchenToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,22 +30,19 @@
     <!--EditFoodImageView EditFoodImage-->
     <ImageView
         android:id="@+id/EditKitchenImageView"
+        android:layout_below="@+id/toolbarLayout"
         android:src="@drawable/kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_below="@id/EditKitchenAppbar"
         android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription"
     />
 
     <!--EditKitchenEditText to edit kitchen name-->
     <EditText
         android:id="@+id/EditKitchenEditName"
+        android:hint="Kitchen Name"
         android:inputType="text"
-        android:hint="@string/hint_edit_kitchen_name"
-        android:autofillHints="@strings/hint_edit_kitchen_name"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -58,10 +54,8 @@
     <!--EditKitchenEditPassword to edit kitchen password-->
     <EditText
         android:id="@+id/EditKitchenEditPassword"
+        android:hint="Kitchen Password"
         android:inputType="textPassword"
-        android:hint="@string/hint_edit_kitchen_password"
-        android:autofillHints="Password"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -80,7 +74,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        tools:ignore="UseCompoundDrawables"
         >
 
         <!--EditKitchenImageView EditKitchenImage-->
@@ -91,14 +84,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="20dp"
-            tools:ignore="ContentDescription"
             />
 
         <!--EditKitchenImageTextViewDescription-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_image_text"
+            android:text="add image"
             />
 
     </LinearLayout>
@@ -117,7 +109,7 @@
         <!--EditKitchenEditButton to edit kitchen -->
         <Button
             android:id="@+id/EditKitchenButton"
-            android:text="@string/edit_kitchen_edit"
+            android:text="Edit"
             android:onClick="EditKitchenListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,7 +120,7 @@
         <!--EditKitchenCancelButton to cancel editKitchen -->
         <Button
             android:id="@+id/CancelEditKitchenButton"
-            android:text="@string/edit_kitchen_cancel"
+            android:text="Cancel"
             android:onClick="CancelEditKitchenListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -170,6 +170,8 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
         Bitmap FoodImageBitmap = BitmapFactory.decodeStream(GetFoodImageBitmap);
         //set FoodImage as a Bitmap to FoodImageImageView
         holder.FoodImageImageView.setImageBitmap(FoodImageBitmap);
+        //setBackground to every item based on theme
+        //holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
 
         //set onClickListener to every item as a RelativeLayout to only display info about it
         holder.FoodRelativeLayout.setOnClickListener(view ->
@@ -234,7 +236,7 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
         //mark as a not hasAnimation
         hasAnimation.add(false);
         //check if it hasAnimation
-        if(!hasAnimation.get(position)&&position<5)
+        if(!hasAnimation.get(position)&&position<3)
         {
             // Here you apply the animation when the view is bound
             setAnimation(holder.itemView, position);

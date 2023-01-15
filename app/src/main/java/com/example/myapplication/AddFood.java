@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -41,11 +42,13 @@ public class AddFood extends ToolbarMenu
         //Set UI AddFood activity for AddFood activity
         setContentView(R.layout.activity_add_food);
         //AddFoodToolbar UI
-        Toolbar addFoodToolbar= findViewById(R.id.AddFoodToolbar);
+        Toolbar addFoodToolbar= findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as AddFood
+        toolbarTitle.setText("Add Food");
         //Set AddFoodToolbar to our activity
         setSupportActionBar(addFoodToolbar);
-        //Set logo to toolbar
-        getSupportActionBar().setLogo(R.drawable.toolbar_icon);
         //AddFoodExtras to receive any message
         Bundle addFoodExtras = getIntent().getExtras();
         //receive kitchenId from Food activity

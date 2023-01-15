@@ -8,46 +8,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.myapplication.AddFood"
-    android:background="@drawable/background"
     >
 
-        <!--AddFoodAppbar to set AddFoodToolbar-->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/AddFoodAppbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        >
+    <!--Appbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+    >
 
-        <!--AddFoodToolbar-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/AddFoodToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+        <!--include toolbar-->
+        <include
+            android:id="@+id/my_toolbar"
+            layout="@layout/toolbar"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
     <!--AddFoodImageView FoodImage-->
     <ImageView
         android:id="@+id/AddFoodImageView"
+        android:layout_below="@+id/toolbarLayout"
         android:src="@drawable/kitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_below="@id/AddFoodAppbar"
         android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription"
     />
 
     <!--AddFoodEditText to insert food name-->
     <EditText
         android:id="@+id/AddFoodEditName"
+        android:hint="Food name"
         android:inputType="text"
-        android:hint="@string/hint_add_food_name"
-        android:textColorHint="@color/gray"
-        android:autofillHints="@strings/hint_add_food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -60,10 +53,8 @@
 
     <EditText
         android:id="@+id/AddFoodEditPrice"
+        android:hint="Food Price"
         android:inputType="number"
-        android:hint="@string/hint_add_kitchen_price"
-        android:autofillHints="Price"
-        android:textColorHint="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -83,7 +74,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        tools:ignore="UseCompoundDrawables"
         >
 
         <!--AddFoodImageView AddFoodImage-->
@@ -94,14 +84,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="20dp"
-            tools:ignore="ContentDescription"
             />
 
         <!--AddFoodImageTextViewDescription-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_image_text"
+            android:text="New Image"
             />
 
     </LinearLayout>
