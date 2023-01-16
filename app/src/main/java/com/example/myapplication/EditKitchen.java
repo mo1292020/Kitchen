@@ -109,13 +109,6 @@ public class EditKitchen extends ToolbarMenu
         startActivity(kitchenIntent);
     }
 
-    public void CancelEditKitchenListenerButton(View CancelEditKitchenButton)
-    {
-        //intent Activity to back to kitchen activity without edit
-        Intent intent = new Intent(this, Kitchen.class);
-        //start Food activity
-        startActivity(intent);
-    }
 
     // OnClick method for AddKitchenImageImageView to add new KitchenImage
     public void EditKitchenImageListenerImageView(View EditKitchenImageImageView) throws IOException

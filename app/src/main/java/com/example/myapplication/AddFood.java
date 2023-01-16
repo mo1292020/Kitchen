@@ -95,17 +95,6 @@ public class AddFood extends ToolbarMenu
         startActivity(foodIntent);
     }
 
-    // OnClick method for CancelAddFoodButton to back to Food activity without add new food
-    public void CancelAddFoodListenerButton(View cancelAddFoodButton)
-    {
-        //intent Activity to back to food activity without add
-        Intent foodIntent = new Intent(this, Food.class);
-        //send kitchen id to food activity to show food link with
-        foodIntent.putExtra("kitchenId",kitchenId);
-        //start Food activity
-        startActivity(foodIntent);
-    }
-
     // OnClick method for AddFoodImageImageView to add new FoodImage
     public void AddFoodImageListenerImageView(View AddFoodImageImageView) throws IOException
     {

@@ -84,15 +84,6 @@ public class AddKitchen extends ToolbarMenu
         startActivity(kitchenIntent);
     }
 
-    // OnClick method for CancelAddKitchenButton to back to kitchen activity without add new kitchen
-    public void CancelAddKitchenListenerButton(View cancelAddKitchenButton)
-    {
-        //intent Activity to back to Kitchen activity without add
-        Intent kitchenIntent = new Intent(this, Kitchen.class);
-        //start kitchen activity
-        startActivity(kitchenIntent);
-    }
-
     // OnClick method for AddKitchenImageImageView to add new KitchenImage
     public void AddKitchenImageListenerImageView(View AddKitchenImageImageView) throws IOException
     {
