@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:clickable="true"
-            android:text="@string/app_name"
             android:textSize="18sp"
             android:focusable="true" />
     </LinearLayout>

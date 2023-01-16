@@ -177,7 +177,7 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
         //set KitchenImage as a Bitmap to KitchenImageImageView
         holder.KitchenImageImageView.setImageBitmap(KitchenImageBitmap);
         //setBackground to every item based on theme
-        //holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
+        holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
         //set onClickListener to every item as a RelativeLayout to open their FoodList
         holder.KitchenRelativeLayout.setOnClickListener(view ->
         {
@@ -185,6 +185,8 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
             Intent foodIntent = new Intent(context, Food.class);
             //send KitchenId as a message to Activity Food
             foodIntent.putExtra("kitchenId", kitchenData.get(position).getKitchenIdDataModel());
+            //send KitchenName as a message to Activity Food
+            foodIntent.putExtra("kitchenName", kitchenData.get(position).getKitchenNameDataModel());
             //this for start activity from outside
             foodIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //start Food Activity

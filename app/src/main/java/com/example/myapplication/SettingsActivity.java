@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity
                     @Override
                     public void handleOnBackPressed()
                     {
-                        SettingsActivity.this.finish();
+                        finish();
                     }
                 });
     }

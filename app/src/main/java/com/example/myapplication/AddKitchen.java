@@ -54,10 +54,7 @@ public class AddKitchen extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        //intent Activity to back to Kitchen activity
-                        Intent kitchenIntent = new Intent(AddKitchen.this, Kitchen.class);
-                        //start Kitchen activity
-                        startActivity(kitchenIntent);
+                        finish();
                     }
                 });
 

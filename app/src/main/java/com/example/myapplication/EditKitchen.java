@@ -84,10 +84,7 @@ public class EditKitchen extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        //intent Activity to back to Kitchen activity
-                        Intent kitchenIntent = new Intent(EditKitchen.this, Kitchen.class);
-                        //start Food activity
-                        startActivity(kitchenIntent);
+                        finish();
                     }
                 });
     }

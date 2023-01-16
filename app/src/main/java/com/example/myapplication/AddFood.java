@@ -61,12 +61,7 @@ public class AddFood extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        //intent Activity to back to Food activity
-                        Intent foodIntent = new Intent(AddFood.this, Food.class);
-                        //send kitchen id to food activity to show food link with
-                        foodIntent.putExtra("kitchenId",kitchenId);
-                        //start Food activity
-                        startActivity(foodIntent);
+                        finish();
                     }
                 });
 
@@ -91,6 +86,7 @@ public class AddFood extends ToolbarMenu
         Intent foodIntent = new Intent(this, Food.class);
         //send kitchen id to food activity to show food link with
         foodIntent.putExtra("kitchenId",kitchenId);
+
         //start Food activity
         startActivity(foodIntent);
     }

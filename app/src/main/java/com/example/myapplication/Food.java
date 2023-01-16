@@ -25,6 +25,8 @@ public class Food extends ToolbarMenu
     private  FoodCustomAdapter foodAdapter;
     //KitchenId that request to show their food
     private static String kitchenId;
+    //KitchenName to set as a toolbar title
+    private static String kitchenName;
 
     //OnCreate method to lunch Kitchen activity
     @Override
@@ -36,14 +38,16 @@ public class Food extends ToolbarMenu
         setContentView(R.layout.activity_food);
         //FoodToolbar UI
         Toolbar toolbar= findViewById(R.id.my_toolbar);
-        //set toolbar title
-        TextView toolbarTitle=findViewById(R.id.toolbar_title);
-        //set as Food
-        toolbarTitle.setText("Food");
         //Set FoodToolbar to our activity
         setSupportActionBar(toolbar);
         //extras to receive any message
         Bundle extras = getIntent().getExtras();
+        //receive kitchenId from Kitchen activity from item selected
+        kitchenName = extras.getString("kitchenName");
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Food
+        toolbarTitle.setText(kitchenName+" Food");
         //receive kitchenId from Kitchen activity from item selected
         kitchenId = extras.getString("kitchenId");
         //method to fetch food data from database and add in ListView
@@ -55,10 +59,7 @@ public class Food extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        //intent Activity to back to Kitchen activity
-                        Intent foodIntent = new Intent(Food.this, Kitchen.class);
-                        //start Kitchen activity
-                        startActivity(foodIntent);
+                        finish();
                     }
                 });
     }

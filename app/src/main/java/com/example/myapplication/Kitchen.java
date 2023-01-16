@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,10 @@ public class Kitchen extends ToolbarMenu
         setContentView(R.layout.activity_kitchen);
         //KitchenToolbar UI
         Toolbar kitchenToolbar=findViewById(R.id.my_toolbar);
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Kitchen
+        toolbarTitle.setText("Kitchen");
         //Set KitchenToolbar to our activity
         setSupportActionBar(kitchenToolbar);
        //method to fetch kitchen data from database and add in ListView

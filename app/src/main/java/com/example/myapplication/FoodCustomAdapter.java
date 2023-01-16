@@ -171,7 +171,7 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
         //set FoodImage as a Bitmap to FoodImageImageView
         holder.FoodImageImageView.setImageBitmap(FoodImageBitmap);
         //setBackground to every item based on theme
-        //holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
+        holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
 
         //set onClickListener to every item as a RelativeLayout to only display info about it
         holder.FoodRelativeLayout.setOnClickListener(view ->
