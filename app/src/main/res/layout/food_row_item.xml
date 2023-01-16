@@ -19,23 +19,27 @@
     <TextView
         android:id="@+id/FoodNameTextView"
         android:layout_below="@id/FoodImageImageView"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="?attr/color"
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textSize="30sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         />
 
     <TextView
         android:id="@+id/FoodPriceTextView"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="?attr/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/FoodNameTextView"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:visibility="invisible"
         />
 

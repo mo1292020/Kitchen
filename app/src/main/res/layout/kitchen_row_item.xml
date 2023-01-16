@@ -17,13 +17,16 @@
     <TextView
         android:id="@+id/KitchenNameTextView"
         android:layout_below="@id/KitchenImageImageView"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="?attr/color"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textSize="30sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
+
         />
 
 

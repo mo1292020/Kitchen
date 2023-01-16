@@ -29,7 +29,7 @@ public class AddFood extends ToolbarMenu
     //Image to add FoodImageBitmap
     ImageView foodImageImageView;
     //Bitmap of FoodImage
-    Bitmap foodImageBitmap;
+    Bitmap foodImageBitmap=Bitmap.createBitmap(200,130, Bitmap.Config.RGBA_F16);
     //request code of PickImage
     int PICK_IMAGE = 1;
 
@@ -61,7 +61,12 @@ public class AddFood extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        finish();
+                        //intent Activity to back to Food activity
+                        Intent foodIntent = new Intent(AddFood.this, Food.class);
+                        //send kitchen id to food activity to show food link with
+                        foodIntent.putExtra("kitchenId",kitchenId);
+                        //start Food activity
+                        startActivity(foodIntent);
                     }
                 });
 
@@ -86,7 +91,6 @@ public class AddFood extends ToolbarMenu
         Intent foodIntent = new Intent(this, Food.class);
         //send kitchen id to food activity to show food link with
         foodIntent.putExtra("kitchenId",kitchenId);
-
         //start Food activity
         startActivity(foodIntent);
     }

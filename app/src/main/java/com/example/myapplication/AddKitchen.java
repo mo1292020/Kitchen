@@ -27,7 +27,7 @@ public class AddKitchen extends ToolbarMenu
     //Image to add KitchenImageBitmap
     ImageView kitchenImageImageView;
     //Bitmap of KitchenImage
-    Bitmap kitchenImageBitmap;
+    Bitmap kitchenImageBitmap=Bitmap.createBitmap(200,130, Bitmap.Config.RGBA_F16);
     //request code of PickImage
     int PICK_IMAGE = 1;
 
@@ -54,7 +54,10 @@ public class AddKitchen extends ToolbarMenu
                     @Override
                     public void handleOnBackPressed()
                     {
-                        finish();
+                        //intent Activity to back to Kitchen activity
+                        Intent kitchenIntent = new Intent(AddKitchen.this, Kitchen.class);
+                        //start Kitchen activity
+                        startActivity(kitchenIntent);
                     }
                 });
 

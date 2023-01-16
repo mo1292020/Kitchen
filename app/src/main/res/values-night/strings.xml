@@ -2,4 +2,5 @@
 <resources>
     <string name="add_kitchen_icon">AddKitchenIcon</string>
     <string name="mode">Night</string>
+    <string name="item_color">#00000</string>
 </resources>

@@ -3,9 +3,10 @@
     android:shape="rectangle"
     >
     <gradient
-        android:startColor="#FFF"
-        android:endColor="#FFF"
-        android:angle="315"/>
+        android:angle="90"
+        android:centerColor="#AAA"
+        android:centerX="@android:integer/config_longAnimTime"
+        />
 
     <corners
         android:bottomRightRadius="20dp"

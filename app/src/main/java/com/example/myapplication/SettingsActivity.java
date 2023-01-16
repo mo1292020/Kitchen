@@ -31,16 +31,6 @@ public class SettingsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         //replace our fragment with id container with our preference
         getSupportFragmentManager().beginTransaction().replace(R.id.FregmentContainerSetting, new SettingsFragment()).commit();
-        //handel OnBackPress of our activity
-        SettingsActivity.this.getOnBackPressedDispatcher().addCallback(this,
-                new OnBackPressedCallback(true)
-                {
-                    @Override
-                    public void handleOnBackPressed()
-                    {
-                        finish();
-                    }
-                });
     }
 
 }

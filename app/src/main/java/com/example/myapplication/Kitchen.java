@@ -39,7 +39,7 @@ public class Kitchen extends ToolbarMenu
         Toolbar kitchenToolbar=findViewById(R.id.my_toolbar);
         //set toolbar title
         TextView toolbarTitle=findViewById(R.id.toolbar_title);
-        //set as Kitchen
+        //set as Edit Kitchen
         toolbarTitle.setText("Kitchen");
         //Set KitchenToolbar to our activity
         setSupportActionBar(kitchenToolbar);

@@ -170,6 +170,7 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
     {
         //set KitchenName from KitchenData by position
         holder.KitchenNameTextView.setText(kitchenData.get(position).getKitchenNameDataModel());
+
         //get KitchenImage as a byte from KitchenData to convert to Bitmap
         InputStream GetKitchenImageBitmap = new ByteArrayInputStream(kitchenData.get(position).getKitchenImageDataModel());
         //convert it to bitmap
