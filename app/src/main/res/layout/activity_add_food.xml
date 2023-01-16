@@ -98,38 +98,20 @@
 
 
 
-    <!--LinearLayout of add and cancel buttons-->
-    <LinearLayout
-    android:layout_below="@+id/AddFoodImageLinearLayout"
-    android:layout_centerHorizontal="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
 
         <!--AddFoodAddButton to add food to database-->
         <Button
             android:id="@+id/AddFoodButton"
+            android:layout_below="@+id/AddFoodImageLinearLayout"
+            android:layout_centerHorizontal="true"
             android:text="@string/add_food_add"
             android:onClick="AddFoodListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="?attr/color"
         />
 
-        <!--AddFoodCancelButton to cancel addFood at database-->
-        <Button
-            android:id="@+id/AddFoodCancelButton"
-            android:text="@string/add_food_cancel"
-            android:onClick="CancelAddFoodListenerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
-        />
 
-    </LinearLayout>
 
 
 </RelativeLayout>

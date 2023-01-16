@@ -96,37 +96,19 @@
 
 
 
-    <!--LinearLayout of add and cancel buttons-->
-    <LinearLayout
-    android:layout_below="@+id/AddKitchenImageLinearLayout"
-    android:layout_centerHorizontal="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-
-        <!--AddKitchenAddButton to add kitchen to database-->
-        <Button
-            android:id="@+id/AddKitchenButton"
-            android:text="@string/add_kitchen_add"
-            android:onClick="AddKitchenListenerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
+    <!--AddKitchenAddButton to add kitchen to database-->
+    <Button
+        android:id="@+id/AddKitchenButton"
+        android:layout_below="@+id/AddKitchenImageLinearLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="?attr/color"
+        android:text="@string/add_kitchen_add"
+        android:onClick="AddKitchenListenerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
         />
 
-        <!--AddKitchenCancelButton to cancel addKitchen at database-->
-        <Button
-            android:id="@+id/CancelAddKitchenButton"
-            android:text="@string/add_kitchen_cancel"
-            android:onClick="CancelAddKitchenListenerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
-        />
 
-    </LinearLayout>
 
 </RelativeLayout>

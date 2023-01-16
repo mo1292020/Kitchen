@@ -97,38 +97,19 @@
 
 
 
-    <!--LinearLayout of add and cancel buttons-->
-    <LinearLayout
-    android:layout_below="@+id/EditKitchenImageLinearLayout"
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
 
         <!--EditKitchenEditButton to edit kitchen -->
         <Button
             android:id="@+id/EditKitchenButton"
+            android:layout_below="@+id/EditKitchenImageLinearLayout"
+            android:layout_centerHorizontal="true"
             android:text="Edit"
             android:onClick="EditKitchenListenerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="?attr/color"
         />
 
-        <!--EditKitchenCancelButton to cancel editKitchen -->
-        <Button
-            android:id="@+id/CancelEditKitchenButton"
-            android:text="Cancel"
-            android:onClick="CancelEditKitchenListenerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            style="?android:attr/buttonBarButtonStyle"
-        />
-
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -40,21 +40,23 @@
         android:id="@+id/KitchenGIFView"
         android:layout_below="@+id/KitchenListView"
         android:src="@drawable/burger_gif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="80dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
     />
 
     <!--AddKitchenButtonIcon to start AddKitchenActivity to add new kitchen -->
     <ImageView
         android:id="@+id/InsertKitchenImageView"
         android:onClick="AddKitchenListenerIcon"
-        android:src="@drawable/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:src="@drawable/add_kitchen"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
     />
 
 </RelativeLayout>
