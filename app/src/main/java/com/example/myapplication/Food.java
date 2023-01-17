@@ -60,9 +60,9 @@ public class Food extends ToolbarMenu
                     public void handleOnBackPressed()
                     {
                         //intent Activity to back to Kitchen activity
-                        Intent foodIntent = new Intent(Food.this, Kitchen.class);
+                        Intent kitchenIntent = new Intent(Food.this, Kitchen.class);
                         //start Kitchen activity
-                        startActivity(foodIntent);
+                        startActivity(kitchenIntent);
                     }
                 });
     }

@@ -47,19 +47,6 @@ public class AddKitchen extends ToolbarMenu
         toolbarTitle.setText("Add Kitchen");
         //Set AddKitchenToolbar to our activity
         setSupportActionBar(addKitchenToolbar);
-        //handel OnBackPress of our activity
-        AddKitchen.this.getOnBackPressedDispatcher().addCallback(this,
-                new OnBackPressedCallback(true)
-                {
-                    @Override
-                    public void handleOnBackPressed()
-                    {
-                        //intent Activity to back to Kitchen activity
-                        Intent kitchenIntent = new Intent(AddKitchen.this, Kitchen.class);
-                        //start Kitchen activity
-                        startActivity(kitchenIntent);
-                    }
-                });
 
     }
 
