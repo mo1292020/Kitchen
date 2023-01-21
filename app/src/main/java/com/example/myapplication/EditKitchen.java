@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -161,7 +162,7 @@ public class EditKitchen extends ToolbarMenu
                 //KitchenImage as Bitmap
                 kitchenImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), kitchenImageUri);
                 //compress KitchenImage as byte at BytesArray
-                kitchenImageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bytesArray);
+                kitchenImageBitmap.compress(Bitmap.CompressFormat.PNG, 10, bytesArray);
                 //link ImageKitchenImageView to our EditKitchenImageImageView
                 kitchenImageImageView = findViewById(R.id.EditKitchenImageImageView);
                 //set bitmap external image to KitchenImage

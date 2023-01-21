@@ -139,7 +139,7 @@ public class EditFood extends ToolbarMenu
                 //FoodImage as Bitmap
                 foodImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), foodImageUri);
                 //compress FoodImage as byte at BytesArray
-                foodImageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bytesArray);
+                foodImageBitmap.compress(Bitmap.CompressFormat.PNG, 10, bytesArray);
                 //link ImageFoodImageView to our EditFoodImageImageView
                 FoodImageImageView = findViewById(R.id.EditFoodImageImageView);
                 //set bitmap external image to FoodImage

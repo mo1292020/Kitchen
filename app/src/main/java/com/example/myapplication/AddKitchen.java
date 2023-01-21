@@ -144,7 +144,7 @@ public class AddKitchen extends ToolbarMenu
                 //KitchenImage as Bitmap
                 kitchenImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), kitchenImageUri);
                 //compress KitchenImage as byte at BytesArray
-                kitchenImageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bytesArray);
+                kitchenImageBitmap.compress(Bitmap.CompressFormat.PNG, 10, bytesArray);
                 //link ImageKitchenImageView to our AddKitchenImageImageView
                 kitchenImageImageView = findViewById(R.id.AddKitchenImageImageView);
                 //set bitmap external image to KitchenImage

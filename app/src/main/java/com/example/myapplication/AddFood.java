@@ -118,7 +118,7 @@ public class AddFood extends ToolbarMenu
                 //FoodImage as Bitmap
                 foodImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), foodImageUri);
                 //compress FoodImage as byte at BytesArray
-                foodImageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bytesArray);
+                foodImageBitmap.compress(Bitmap.CompressFormat.PNG, 10, bytesArray);
                 //link ImageFoodImageView to our AddFoodImageImageView
                 foodImageImageView = findViewById(R.id.AddFoodImageImageView);
                 //set bitmap external image to FoodImage

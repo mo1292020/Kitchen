@@ -225,7 +225,7 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
         //ByteArrayOutputStream to convert input
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         //compress bitmap
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 10, outputStream);
         //return bitmap after convert to ByteArray
         return outputStream.toByteArray();
     }

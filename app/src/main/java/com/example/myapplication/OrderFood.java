@@ -24,6 +24,9 @@ public class OrderFood extends ToolbarMenu
 {
     //FoodDataModel to receive FoodData from FoodCustomAdapter
     FoodDataModel foodDataModels;
+    //KitchenDataModel to receive KitchenData from FoodCustomAdapter
+    KitchenDataModel kitchenDataModel;
+
     //OrderFoodImageImageView to set FoodImage
     public ImageView OrderFoodImageImageView;
     //OrderFoodNameTextView to set FoodName
@@ -43,14 +46,18 @@ public class OrderFood extends ToolbarMenu
         Toolbar toolbar= findViewById(R.id.my_toolbar);
         //Set FoodToolbar to our activity
         setSupportActionBar(toolbar);
+
+        //extras to receive any message
+        Bundle extras = getIntent().getExtras();
+        //receive foodData from food activity from item selected
+        foodDataModels = (FoodDataModel) extras.getSerializable("foodData");
+        //receive kitchenData from food activity from item selected
+        kitchenDataModel = (KitchenDataModel) extras.getSerializable("kitchenData");
+
         //set toolbar title
         TextView toolbarTitle=findViewById(R.id.toolbar_title);
         //set as Food
-        toolbarTitle.setText("Order Food");
-        //extras to receive any message
-        Bundle extras = getIntent().getExtras();
-        //receive kitchenId from Kitchen activity from item selected
-        foodDataModels = (FoodDataModel) extras.getSerializable("foodData");
+        toolbarTitle.setText(kitchenDataModel.getKitchenNameDataModel()+" "+foodDataModels.getFoodNameDataModel());
 
         //link with FoodImageImageView in xml
         OrderFoodImageImageView =  findViewById(R.id.OrderFoodImageImageView);
