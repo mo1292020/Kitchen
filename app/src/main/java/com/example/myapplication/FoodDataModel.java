@@ -1,19 +1,20 @@
 package com.example.myapplication;
 
+import java.io.Serializable;
+
 //This is DataModel For food
-public class FoodDataModel
-{
+public class FoodDataModel implements Serializable {
 
     //String to store food id
-    String FoodIdDataModel;
+    private String FoodIdDataModel;
     //String to store food name
-    String FoodNameDataModel;
+    private String FoodNameDataModel;
     //String to store food price
-    String FoodPriceDataModel;
+    private String FoodPriceDataModel;
     //String to store Kitchen Id of food
-    String KitchenFoodIdDataModel;
+    private String KitchenFoodIdDataModel;
     //byte to store food byte image
-    byte [] FoodImageDataModel;
+    private byte [] FoodImageDataModel;
 
     //Constructor
     public FoodDataModel(String FoodIdDataModel, String FoodNameDataModel, String FoodPriceDataModel, String KitchenFoodIdDataModel, byte [] FoodImageDataModel)

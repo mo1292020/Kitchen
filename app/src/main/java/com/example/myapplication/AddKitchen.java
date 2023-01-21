@@ -1,19 +1,28 @@
 package com.example.myapplication;
 
 //import libraries
-        import androidx.activity.OnBackPressedCallback;
-        import androidx.appcompat.widget.Toolbar;
-        import android.content.Intent;
+import static com.example.myapplication.Validate.checkKitchen;
+import static com.example.myapplication.Validate.replaceAll;
+
+import androidx.appcompat.widget.Toolbar;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Intent;
         import android.graphics.Bitmap;
         import android.net.Uri;
         import android.os.Bundle;
         import android.provider.MediaStore;
-        import android.view.View;
+import android.view.Gravity;
+import android.view.View;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.TextView;
+import android.widget.Toast;
 
-        import java.io.ByteArrayOutputStream;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.ByteArrayOutputStream;
         import java.io.IOException;
 
 //This is  Activity to add new Kitchen
@@ -61,14 +70,37 @@ public class AddKitchen extends ToolbarMenu
         String getKitchenName=String.valueOf(kitchenName.getText());
         //get kitchenPassword from PasswordKitchenEditText
         String getKitchenPassword=String.valueOf(kitchenPassword.getText());
-        //KitchenDatabaseHandler  class manage our database
-        KitchenDatabaseHandler database = new KitchenDatabaseHandler(AddKitchen.this);
-        //add new kitchen to Table_Kitchen in database
-        database.addKitchen(getKitchenName,getKitchenPassword,kitchenImageBitmap);
-        //intent Activity to back to Kitchen activity after add
-        Intent kitchenIntent = new Intent(this, Kitchen.class);
-        //start kitchen activity
-        startActivity(kitchenIntent);
+        //check if kitchenName not repeated
+        boolean checkRepeatedName=checkKitchen(getApplicationContext(),getKitchenName);
+        //check password length
+        boolean checkPassword=getKitchenPassword.length()>=8;
+        //validation name and password
+        if(checkRepeatedName&&checkPassword)
+        {
+
+            //KitchenCustomAdapter  class manage our database
+            KitchenCustomAdapter kitchenCustomAdapter = new KitchenCustomAdapter(AddKitchen.this);
+            //add kitchen in Table_Kitchen in kitchenAdapter by kitchenId
+            kitchenCustomAdapter.addKitchen(getKitchenName, getKitchenPassword, kitchenImageBitmap);
+            //finish this activity
+            finish();
+        }
+        else
+        {
+            //if password validate then name has error
+            if(checkPassword)
+            {
+                //show message error at kitchenNameEditText
+                kitchenName.setError("Kitchen Name is taken");
+            }
+            //invalidate password
+            else
+            {
+                //show message error kitchenPasswordEditText
+                kitchenPassword.setError("8 character at least");
+            }
+        }
+
     }
 
     // OnClick method for AddKitchenImageImageView to add new KitchenImage

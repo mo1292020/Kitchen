@@ -101,10 +101,13 @@ public class FoodCustomAdapter extends ArrayAdapter<FoodDataModel>
 */
 
 //import libraries
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +122,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //This is RecycleViewAdapter For Store  Kitchen KitchenDataModelDataType
@@ -127,19 +131,25 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
 
     //Foods Data
     ArrayList<FoodDataModel> foodData;
+    //KitchenDataModel to store info about KitchenFood
+    KitchenDataModel kitchenDataModel;
     //ArrayList to check every row has animation
     ArrayList<Boolean> hasAnimation=new ArrayList<>();
     //OurContext
     Context context;
 
     //Constructor
-    public FoodCustomAdapter(Context context, ArrayList<FoodDataModel> foodData)
+    public FoodCustomAdapter(Context context,KitchenDataModel kitchenDataModel)
     {
-        //Store FoodData
-        this.foodData =foodData;
         //Store context
         this.context=context;
+        //Store KitchenData
+        this.kitchenDataModel=kitchenDataModel;
+        //Store data
+        this.foodData=getData();
+
     }
+
 
     //method to inflate RowFood XML in viewHolder call automatic when RecycleView need ViewHolder
     @NonNull
@@ -175,12 +185,16 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
         //set onClickListener to every item as a RelativeLayout to only display info about it
         holder.FoodRelativeLayout.setOnClickListener(view ->
         {
-            //get foodName from FoodAdapter
-            String name = foodData.get(position).getFoodNameDataModel();
-            //get foodPrice from FoodAdapter
-            String price= foodData.get(position).getFoodPriceDataModel();
-            //show them in a toast
-            Toast.makeText(context,"Food "+name+" with price "+price+" ordered", Toast.LENGTH_SHORT).show();
+            //intent for edit food
+            Intent orderFoodIntent = new Intent(context,OrderFood.class);
+            //send Food data to ordered activity
+            orderFoodIntent.putExtra("foodData", foodData.get(position));
+            //send Kitchen data to ordered activity
+            orderFoodIntent.putExtra("kitchenData", kitchenDataModel);
+            //this for start activity from outside
+            orderFoodIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //start edit food activity
+            context.startActivity(orderFoodIntent);
         });
 
         //set onLongClickListener to every item as a RelativeLayout to Delete or Edit Food
@@ -198,31 +212,24 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
                 if(item.getTitle().equals("Delete"))
                 {
                     //delete food from database
-                    database.DeleteFood(foodData.get(position).getFoodIdDataModel());
-                    //delete food from FoodData
-                    foodData.remove(foodData.get(position));
-                    //notify Change data to adapter to recycle
-                    this.notifyDataSetChanged();
+                  deleteFood(foodData.get(position).getFoodIdDataModel());
+
                 }
                 //if choose to edit kitchen
                 if(item.getTitle().equals("Edit"))
                 {
+
                     //intent for edit food
                     Intent editFoodIntent = new Intent(context,EditFood.class);
-                    //send FoodId to activity edit food
-                    editFoodIntent.putExtra("foodId", foodData.get(position).getFoodIdDataModel());
-                    //send FoodName to activity edit food
-                    editFoodIntent.putExtra("foodName", foodData.get(position).getFoodNameDataModel());
-                    //send FoodPrice to activity edit food
-                    editFoodIntent.putExtra("foodPrice", foodData.get(position).getFoodPriceDataModel());
-                    //send FoodKitchenId to activity edit food
-                    editFoodIntent.putExtra("kitchenId", foodData.get(position).getKitchenFoodIdDataModel());
-                    //send FoodImage to activity edit food
-                    editFoodIntent.putExtra("foodImage", foodData.get(position).getFoodImageDataModel());
+                    //send FoodData to activity edit food
+                    editFoodIntent.putExtra("foodData", foodData.get(position));
+                    //send KitchenData to activity edit food
+                    editFoodIntent.putExtra("kitchenData", kitchenDataModel);
                     //this for start activity from outside
                     editFoodIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //start edit food activity
                     context.startActivity(editFoodIntent);
+
                 }
 
                 return true;
@@ -293,4 +300,70 @@ public class FoodCustomAdapter extends RecyclerView.Adapter<FoodCustomAdapter.Vi
 
 
     }
+
+    public ArrayList<FoodDataModel> getData(){
+
+        //ArrayList to store the Food in Database and then add to ArrayAdapter to set in ListView
+        ArrayList<FoodDataModel> foodData = new ArrayList<>();
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //cursor indicates the food in database Table_Food
+        Cursor foodCursor = database.IndicatorFoodTable();
+
+        //Fetch the data from Table_Kitchen
+        if(foodCursor.moveToFirst())
+        {
+            do
+            {
+                //FoodId for food place in colum 0 in Table_Food
+                String getFoodId=foodCursor.getString(0);
+                //FoodName for food place in colum 1 in Table_Food
+                String getFoodName= foodCursor.getString(1);
+                //FoodPrice for food place in colum 2 in Table_Food
+                String getFoodPrice= foodCursor.getString(2);
+                //KitchenFoodName for food place in colum 3 in Table_Food
+                String getKitchenFoodID= foodCursor.getString(3);
+                //KitchenImage for Kitchen place in colum 3 in Table_Kitchen
+                byte[] getFoodImage=foodCursor.getBlob(4);
+                //Check if this food belong to this KitchenId or not
+                if(getKitchenFoodID.equals(kitchenDataModel.getKitchenIdDataModel()))
+                    //add FoodDetails to ArrayList FoodDataModels
+                    foodData.add(new FoodDataModel(getFoodId, getFoodName, getFoodPrice, getKitchenFoodID,getFoodImage));
+            }
+            while(foodCursor.moveToNext());
+        }
+        return foodData;
+    }
+
+    public void updateFood(String FoodId,String FoodName,String FoodPrice,Bitmap foodImageBitmap){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //edit food in Table_Food in database by foodId
+        database.updateFood(FoodId,FoodName,FoodPrice,foodImageBitmap);
+        //resetData again
+        foodData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+    public void addFood(String KitchenId,String FoodName,String FoodPrice,Bitmap foodImageBitmap){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //edit food in Table_Food in database by foodId
+        database.addFood(KitchenId,FoodName,FoodPrice,foodImageBitmap);
+        //resetData again
+        foodData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+    public void deleteFood(String FoodId){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //delete food in Table_Food in database by foodId
+        database.DeleteFood(FoodId);
+        //resetData again
+        foodData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+
 }

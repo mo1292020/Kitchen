@@ -26,14 +26,17 @@ public class EditFood extends ToolbarMenu
     private  EditText foodNameEditText;
     //EditText to input FoodPrice
     private  EditText foodPriceEditText;
-    //FoodId to edit
-    private static String foodId;
-    //KitchenFoodId to edit
-    private static String kitchenId;
+    //KitchenFoodData to edit
+    private static KitchenDataModel kitchenDataModel;
+    //FoodData to edit
+    private static FoodDataModel foodDataModel;
+
     //Image to add FoodImageBitmap
     ImageView FoodImageImageView;
     //Bitmap of FoodImage
     Bitmap foodImageBitmap;
+    //receive data
+    Bundle editFoodExtras;
     //request code of PickImage
     int PICK_IMAGE = 1;
 
@@ -45,38 +48,34 @@ public class EditFood extends ToolbarMenu
         super.onCreate(savedInstanceState);
         //Set UI EditFood activity for EditFood activity
         setContentView(R.layout.activity_edit_food);
+        //EditFoodExtras to receive any message
+        editFoodExtras = getIntent().getExtras();
+        //receive KitchenData from Food activity
+        kitchenDataModel=(KitchenDataModel) editFoodExtras.getSerializable("kitchenData");
+        //receive KitchenData from Food activity
+        foodDataModel=(FoodDataModel) editFoodExtras.getSerializable("foodData");
+
         //EditFoodToolbar UI
         Toolbar editFoodToolbar=(Toolbar) findViewById(R.id.my_toolbar);
         //set toolbar title
         TextView toolbarTitle=findViewById(R.id.toolbar_title);
         //set as EditFood
-        toolbarTitle.setText("Edit Food");
+        toolbarTitle.setText("Edit "+ kitchenDataModel.getKitchenNameDataModel()+" "+foodDataModel.getFoodNameDataModel());
         //Set EditFoodToolbar to our activity
         setSupportActionBar(editFoodToolbar);
-        //EditFoodExtras to receive any message
-        Bundle editFoodExtras = getIntent().getExtras();
-        //receive FoodId from Food activity
-        foodId= editFoodExtras.getString("foodId");
-        //receive FoodName from Food activity
-        kitchenId= editFoodExtras.getString("kitchenId");
-        //FoodName to edit
-        String foodName = editFoodExtras.getString("foodName");
-        //FoodPrice to edit
-        String foodPrice = editFoodExtras.getString("foodPrice");
-        //receive FoodImage from Food activity
-        byte [] foodImage = editFoodExtras.getByteArray("foodImage");
+
         //convert FoodImage
-        InputStream GetFoodImageBitmap = new ByteArrayInputStream(foodImage);
+        InputStream GetFoodImageBitmap = new ByteArrayInputStream(foodDataModel.getFoodImageDataModel());
         //convert it to bitmap
         foodImageBitmap = BitmapFactory.decodeStream(GetFoodImageBitmap);
         //link FoodNameEditText to  EditFoodEditName
         foodNameEditText =findViewById(R.id.EditFoodEditName);
         //set foodName to FoodNameEditText
-        foodNameEditText.setText(foodName);
+        foodNameEditText.setText(foodDataModel.getFoodNameDataModel());
         //link FoodPriceEditText to EditFoodEditPrice
         foodPriceEditText =findViewById(R.id.EditFoodEditPrice);
         //set foodPrice to foodPriceEditText
-        foodPriceEditText.setText(foodPrice);
+        foodPriceEditText.setText(foodDataModel.getFoodPriceDataModel());
         //link FoodImageImageView to  EditFoodImageView
         FoodImageImageView =findViewById(R.id.EditFoodImageImageView);
         //set FoodImage to FoodImageEditText
@@ -90,16 +89,13 @@ public class EditFood extends ToolbarMenu
         String getFoodName=String.valueOf(foodNameEditText.getText());
         //get foodPrice from foodPriceEditText
         String getFoodPrice=String.valueOf(foodPriceEditText.getText());
-        //KitchenDatabaseHandler  class manage our database
-        KitchenDatabaseHandler database = new KitchenDatabaseHandler(EditFood.this);
-        //edit food in Table_Food in database by foodId
-        database.updateFood(foodId,getFoodName,getFoodPrice,foodImageBitmap);
-        //intent Activity to back to Food activity after edit
-        Intent foodIntent = new Intent(this, Food.class);
-        //send kitchen id to food activity to show food link with
-        foodIntent.putExtra("kitchenId",kitchenId);
-        //start Food activity
-        startActivity(foodIntent);
+        //FoodCustomAdapter  class manage our database
+        FoodCustomAdapter foodCustomAdapter = new FoodCustomAdapter(EditFood.this,kitchenDataModel);
+        //edit food in Table_Food in foodAdapter by foodId
+        foodCustomAdapter.updateFood(foodDataModel.getFoodIdDataModel(),getFoodName,getFoodPrice,foodImageBitmap);
+        //finish this activity
+        finish();
+
     }
 
     // OnClick method for AddFoodImageImageView to add new FoodImage

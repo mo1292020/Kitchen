@@ -45,17 +45,6 @@ public class Kitchen extends ToolbarMenu
         setSupportActionBar(kitchenToolbar);
        //method to fetch kitchen data from database and add in ListView
         CreateKitchenListView();
-        //handel OnBackPress of our activity
-        Kitchen.this.getOnBackPressedDispatcher().addCallback(this,
-                new OnBackPressedCallback(true)
-                {
-                    @Override
-                    public void handleOnBackPressed()
-                    {
-                        //empty stack and close app
-                        finishAffinity();
-                    }
-                });
     }
 
     // OnClick method for ImageView Icon to add new Kitchen
@@ -70,38 +59,10 @@ public class Kitchen extends ToolbarMenu
     //method to fetch kitchen data from database and add in ListView
     public void CreateKitchenListView()
     {
-        //Our UI Kitchen ListView
-        KitchenListView = findViewById(R.id.KitchenListView);
-        //ArrayList to store the kitchen in Database and then add to ArrayAdapter to set in ListView
-        kitchenDataModels = new ArrayList<>();
-        //KitchenDatabaseHandler  class manage our database
-        KitchenDatabaseHandler database = new KitchenDatabaseHandler(Kitchen.this);
-        //cursor indicates the kitchen in database Table_Kitchen
-        Cursor kitchenCursor = database.IndicatorKitchenTable();
-
-        //Fetch the data from Table_Kitchen
-        if(kitchenCursor.moveToFirst())
-        {
-            do
-            {
-                //KitchenId for kitchen place in colum 0 in Table_Kitchen
-                String getKitchenId= kitchenCursor.getString(0);
-                //KitchenName for kitchen place in colum 1 in Table_Kitchen
-                String getKitchenName= kitchenCursor.getString(1);
-                //KitchenPassword for kitchen place in colum 2 in Table_Kitchen
-                String getKitchenPassword=kitchenCursor.getString(2);
-                //KitchenImage for Kitchen place in colum 3 in Table_Kitchen
-                byte[] getKitchenImage=kitchenCursor.getBlob(3);
-                //add KitchenDetails to ArrayList KitchenDataModels
-                kitchenDataModels.add(new KitchenDataModel(getKitchenId, getKitchenName,getKitchenPassword,getKitchenImage));
-            }
-            while(kitchenCursor.moveToNext());
-        }
-
-        if(kitchenDataModels!=null)
-        {
+            //Our UI Kitchen ListView
+            KitchenListView = findViewById(R.id.KitchenListView);
             //add our data to KitchenAdapter and our context that recycle data in
-            kitchenAdapter = new KitchenCustomAdapter(getApplicationContext(), kitchenDataModels);
+            kitchenAdapter = new KitchenCustomAdapter(getApplicationContext());
             //Layout Manager to RecycleView to setOrientation
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             //when you want horizontal
@@ -114,7 +75,16 @@ public class Kitchen extends ToolbarMenu
             KitchenListView.setScrollBarSize(0);
             //add adapter to our KitchenListView
             KitchenListView.setAdapter(kitchenAdapter);
-        }
+
   }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //add our data to FoodAdapter and our context that recycle data in
+        kitchenAdapter = new KitchenCustomAdapter(getApplicationContext());
+        //set foodAdapter to listView
+        KitchenListView.setAdapter(kitchenAdapter);
+    }
 
 }

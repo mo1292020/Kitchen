@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 //import libraries
+import static com.example.myapplication.Validate.checkKitchen;
+import static com.example.myapplication.Validate.replaceAll;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
@@ -26,10 +29,11 @@ public class EditKitchen extends ToolbarMenu
     private  EditText kitchenNameEditText;
     //EditText to input KitchenPassword
     private  EditText kitchenPasswordEditText;
-    //KitchenId to edit
-    private String kitchenId;
-    //Image to add KitchenImageBitmap
+    //KitchenDataModel to receive Kitchen Data from kitchenCustomAdapter
+    KitchenDataModel kitchenDataModel;
+   //Image to add KitchenImageBitmap
     ImageView kitchenImageImageView;
+
     //Bitmap of KitchenImage
     Bitmap kitchenImageBitmap;
     //request code of PickImage
@@ -45,34 +49,29 @@ public class EditKitchen extends ToolbarMenu
         setContentView(R.layout.activity_edit_kitchen);
         //EditKitchenToolbar UI
         Toolbar editKitchenToolbar=(Toolbar) findViewById(R.id.my_toolbar);
-        //set toolbar title
-        TextView toolbarTitle=findViewById(R.id.toolbar_title);
-        //set as Edit Kitchen
-        toolbarTitle.setText("Edit Kitchen");
         //Set EditKitchenToolbar to our activity
         setSupportActionBar(editKitchenToolbar);
         //EditKitchenExtras to receive any message
         Bundle editKitchenExtras = getIntent().getExtras();
-        //receive KitchenId from Kitchen activity
-        kitchenId = editKitchenExtras.getString("kitchenId");
-        //receive KitchenName from Kitchen activity
-        String kitchenName = editKitchenExtras.getString("kitchenName");
-        //receive KitchenPassword from Kitchen activity
-        String kitchenPassword = editKitchenExtras.getString("kitchenPassword");
-        //receive KitchenImage from Kitchen activity
-        byte [] kitchenImage = editKitchenExtras.getByteArray("kitchenImage");
+        //receive KitchenData From KitchenCustomAdapter
+        kitchenDataModel=(KitchenDataModel) editKitchenExtras.getSerializable("kitchenData");
+        //set toolbar title
+        TextView toolbarTitle=findViewById(R.id.toolbar_title);
+        //set as Edit Kitchen
+        toolbarTitle.setText("Edit " + kitchenDataModel.getKitchenNameDataModel()+ " Kitchen");
         //convert KitchenImage
-        InputStream GetKitchenImageBitmap = new ByteArrayInputStream(kitchenImage);
+        InputStream GetKitchenImageBitmap = new ByteArrayInputStream(kitchenDataModel.getKitchenImageDataModel());
         //convert it to bitmap
         kitchenImageBitmap = BitmapFactory.decodeStream(GetKitchenImageBitmap);
+
         //link KitchenNameEditText to  EditKitchenEditName
         kitchenNameEditText =findViewById(R.id.EditKitchenEditName);
         //set kitchenName to KitchenNameEditText
-        kitchenNameEditText.setText(kitchenName);
+        kitchenNameEditText.setText(kitchenDataModel.getKitchenNameDataModel());
         //link KitchenPasswordEditText to  EditKitchenEditPassword
         kitchenPasswordEditText =findViewById(R.id.EditKitchenEditPassword);
         //set kitchenPassword to KitchenPasswordEditText
-        kitchenPasswordEditText.setText(kitchenPassword);
+        kitchenPasswordEditText.setText(kitchenDataModel.getKitchenPasswordDataModel());
         //link KitchenImageImageView to  EditKitchenImageView
         kitchenImageImageView =findViewById(R.id.EditKitchenImageImageView);
         //set kitchenImage to KitchenImageEditText
@@ -87,14 +86,37 @@ public class EditKitchen extends ToolbarMenu
         String getKitchenName=String.valueOf(kitchenNameEditText.getText());
         //get kitchenPassword from KitchenPasswordEditText
         String getKitchenPassword=String.valueOf(kitchenPasswordEditText.getText());
-        //KitchenDatabaseHandler  class manage our database
-        KitchenDatabaseHandler database = new KitchenDatabaseHandler(EditKitchen.this);
-        //edit kitchen in Table_Kitchen in database by kitchenId
-        database.updateKitchen(getKitchenName,getKitchenPassword,kitchenImageBitmap, kitchenId);
-        //intent Activity to back to Kitchen activity after edit
-        Intent kitchenIntent = new Intent(this, Kitchen.class);
-        //start Kitchen activity
-        startActivity(kitchenIntent);
+        //check if kitchenName not repeated
+        boolean checkRepeatedName=checkKitchen(getApplicationContext(),getKitchenName);
+        //check if kitchenName doesn't change
+        boolean checkExistName=replaceAll(getKitchenName).equals(replaceAll(kitchenDataModel.getKitchenNameDataModel()));
+        //check password length
+        boolean checkPassword=getKitchenPassword.length()>=8;
+        //validation name and password
+        if((checkRepeatedName||checkExistName)&&(checkPassword))
+        {
+            //KitchenCustomAdapter  class manage our database
+            KitchenCustomAdapter kitchenCustomAdapter = new KitchenCustomAdapter(EditKitchen.this);
+            //add kitchen in Table_Kitchen in kitchenAdapter by kitchenId
+            kitchenCustomAdapter.updateKitchen(getKitchenName, getKitchenPassword, kitchenImageBitmap,kitchenDataModel.getKitchenIdDataModel());
+            //finish this activity
+            finish();
+        }
+        else
+        {
+            //if password validate then name has error
+            if(checkPassword)
+            {
+                //show message error at kitchenNameEditText
+                kitchenNameEditText.setError("Kitchen Name is taken");
+            }
+            //invalidate password
+            else
+            {
+                //show message error kitchenPasswordEditText
+                kitchenPasswordEditText.setError("8 character at least");
+            }
+        }
     }
 
 

@@ -2,18 +2,20 @@ package com.example.myapplication;
 
 import android.net.Uri;
 
+import java.io.Serializable;
+
 //This is DataModel For Kitchen
-public class KitchenDataModel
+public class KitchenDataModel implements Serializable
 {
 
     //String to store kitchen id
-    String KitchenIdDataModel;
+    private String KitchenIdDataModel;
     //String to store kitchen name
-    String KitchenNameDataModel;
+    private String KitchenNameDataModel;
     //String to store kitchen password
-    String KitchenPasswordDataModel;
+    private String KitchenPasswordDataModel;
     //byte to store kitchen byte image
-    byte [] KitchenImageDataModel;
+    private byte [] KitchenImageDataModel;
 
 
     //Constructor

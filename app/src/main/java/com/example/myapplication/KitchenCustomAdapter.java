@@ -112,6 +112,7 @@ public class KitchenCustomAdapter extends ArrayAdapter<KitchenDataModel>
 //import libraries
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -127,6 +128,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //This is RecycleViewAdapter For Store  Kitchen KitchenDataModelDataType
@@ -141,12 +143,12 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
     Context context;
 
     //Constructor
-    public KitchenCustomAdapter(Context context, ArrayList<KitchenDataModel> kitchenData)
+    public KitchenCustomAdapter(Context context)
     {
-        //Store KitchenData
-        this.kitchenData=kitchenData;
         //Store context
         this.context=context;
+        //Store KitchenData
+        this.kitchenData=getData();
     }
 
     //method to inflate RowKitchen XML in viewHolder call automatic when RecycleView need ViewHolder
@@ -177,17 +179,18 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
         Bitmap KitchenImageBitmap = BitmapFactory.decodeStream(GetKitchenImageBitmap);
         //set KitchenImage as a Bitmap to KitchenImageImageView
         holder.KitchenImageImageView.setImageBitmap(KitchenImageBitmap);
+
         //setBackground to every item based on theme
         holder.itemView.setBackgroundResource((context.getResources().getString(R.string.mode).equals("Day"))?R.drawable.list_view_shape_light:R.drawable.list_view_shape_dark);
+
         //set onClickListener to every item as a RelativeLayout to open their FoodList
         holder.KitchenRelativeLayout.setOnClickListener(view ->
         {
             //intent Food activity
             Intent foodIntent = new Intent(context, Food.class);
-            //send KitchenId as a message to Activity Food
-            foodIntent.putExtra("kitchenId", kitchenData.get(position).getKitchenIdDataModel());
-            //send KitchenName as a message to Activity Food
-            foodIntent.putExtra("kitchenName", kitchenData.get(position).getKitchenNameDataModel());
+
+            //send KitchenData as a message to Activity Food
+            foodIntent.putExtra("kitchenData", kitchenData.get(position));
             //this for start activity from outside
             foodIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //start Food Activity
@@ -209,11 +212,7 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
                 if (item.getTitle().equals("Delete"))
                 {
                     //delete kitchen from database
-                    database.DeleteKitchen(kitchenData.get(position).getKitchenIdDataModel());
-                    //delete kitchen from KitchenData
-                    kitchenData.remove(kitchenData.get(position));
-                    //notify Change data to adapter to recycle
-                    this.notifyDataSetChanged();
+                    deleteKitchen(kitchenData.get(position).getKitchenIdDataModel());
                 }
                 //if choose to edit kitchen
                 if (item.getTitle().equals("Edit"))
@@ -221,13 +220,7 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
                     //intent for edit kitchen
                     Intent editKitchenIntent = new Intent(context, EditKitchen.class);
                     //send KitchenId to activity edit kitchen
-                    editKitchenIntent.putExtra("kitchenId", kitchenData.get(position).getKitchenIdDataModel());
-                    //send KitchenName to activity edit kitchen
-                    editKitchenIntent.putExtra("kitchenName", kitchenData.get(position).getKitchenNameDataModel());
-                    //send KitchenPassword to activity edit kitchen
-                    editKitchenIntent.putExtra("kitchenPassword", kitchenData.get(position).getKitchenPasswordDataModel());
-                    //send KitchenImage to activity edit kitchen
-                    editKitchenIntent.putExtra("kitchenImage", kitchenData.get(position).getKitchenImageDataModel());
+                    editKitchenIntent.putExtra("kitchenData", kitchenData.get(position));
                     //this for start activity from outside
                     editKitchenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //start edit food activity
@@ -296,4 +289,67 @@ public class KitchenCustomAdapter extends RecyclerView.Adapter<KitchenCustomAdap
             viewToAnimate.startAnimation(animation);
 
     }
+
+    public ArrayList<KitchenDataModel> getData() {
+
+        //ArrayList to store the kitchen in Database and then add to ArrayAdapter to set in ListView
+        kitchenData = new ArrayList<>();
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //cursor indicates the kitchen in database Table_Kitchen
+        Cursor kitchenCursor = database.IndicatorKitchenTable();
+
+        //Fetch the data from Table_Kitchen
+        if (kitchenCursor.moveToFirst()) {
+            do {
+                //KitchenId for kitchen place in colum 0 in Table_Kitchen
+                String getKitchenId = kitchenCursor.getString(0);
+                //KitchenName for kitchen place in colum 1 in Table_Kitchen
+                String getKitchenName = kitchenCursor.getString(1);
+                //KitchenPassword for kitchen place in colum 2 in Table_Kitchen
+                String getKitchenPassword = kitchenCursor.getString(2);
+                //KitchenImage for Kitchen place in colum 3 in Table_Kitchen
+                byte[] getKitchenImage = kitchenCursor.getBlob(3);
+                //add KitchenDetails to ArrayList KitchenDataModels
+                kitchenData.add(new KitchenDataModel(getKitchenId, getKitchenName, getKitchenPassword, getKitchenImage));
+
+            }
+            while (kitchenCursor.moveToNext());
+
+        }
+        return kitchenData;
+    }
+
+    public void updateKitchen(String kitchenName,String kitchenPassword,Bitmap kitchenImageBitmap,String kitchenId){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //edit kitchen in Table_Kitchen in database by kitchenId
+        database.updateKitchen(kitchenName, kitchenPassword, kitchenImageBitmap, kitchenId);
+        //resetData again
+        kitchenData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+    public void addKitchen(String kitchenName,String kitchenPassword,Bitmap kitchenImageBitmap){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //edit food in Table_Food in database by foodId
+        database.addKitchen(kitchenName,kitchenPassword,kitchenImageBitmap);
+        //resetData again
+        kitchenData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+    public void deleteKitchen(String kitchenId){
+        //KitchenDatabaseHandler  class manage our database
+        KitchenDatabaseHandler database = new KitchenDatabaseHandler(context);
+        //delete food in Table_Food in database by foodId
+        database.DeleteKitchen(kitchenId);
+        //resetData again
+        kitchenData=getData();
+        //notify Change data to adapter to recycle
+        this.notifyDataSetChanged();
+    }
+
+
 }

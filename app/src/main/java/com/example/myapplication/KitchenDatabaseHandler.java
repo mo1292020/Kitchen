@@ -51,7 +51,7 @@ public class KitchenDatabaseHandler extends SQLiteOpenHelper
     // KitchenTable Create Statements with id as a primary key auto increment & name & password & image
     private static final String CREATE_Kitchen_TABLE = "CREATE TABLE " + TABLE_Kitchen + "("
             + KEY_KitchenID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-            + KEY_KitchenName + " TEXT,"
+            + KEY_KitchenName + " TEXT PRIMARY KEY,"
             + KEY_KitchenPassword + " TEXT,"
             + KEY_KitchenImage + " BLOB);";
 
